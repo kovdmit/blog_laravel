@@ -6,12 +6,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Категории</h1>
+                    <h1>Теги</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Главная</a></li>
-                        <li class="breadcrumb-item active">Категории</li>
+                        <li class="breadcrumb-item active">Теги</li>
                     </ol>
                 </div>
             </div>
@@ -24,7 +24,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Список категорий</h3>
+                <h3 class="card-title">Список тегов</h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -37,8 +37,8 @@
             </div>
             <div class="card-body">
 
-                @if($categories->isEmpty())
-                    Категорий нет
+                @if($tags->isEmpty())
+                    Тегов нет
                 @else
                     <table class="table table-bordered">
                         <thead>
@@ -50,18 +50,18 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($categories as $category)
+                        @foreach($tags as $tag)
                             <tr>
-                                <td>{{ $category->id }}</td>
-                                <td>{{ $category->title }}</td>
-                                <td>{{ $category->slug }}</td>
+                                <td>{{ $tag->id }}</td>
+                                <td>{{ $tag->title }}</td>
+                                <td>{{ $tag->slug }}</td>
                                 <td>
-                                    <a href="{{ route('categories.edit', ['category' => $category->slug]) }}"
+                                    <a href="{{ route('tags.edit', ['tag' => $tag->slug]) }}"
                                        class="ico-shadow-edit">
                                         <i class="fa-solid fa-pen-to-square fa-lg pr-2 ico-shadow-edit"></i>
                                     </a>
                                     <form class="d-inline"
-                                          action="{{ route('categories.destroy', ['category' => $category->slug]) }}"
+                                          action="{{ route('tags.destroy', ['tag' => $tag->slug]) }}"
                                           method="POST">
                                         @method('DELETE')
                                         @csrf
@@ -82,29 +82,29 @@
             <div class="card-footer">
                 <div class="row">
                     <div class="col">
-                        <a class="btn btn-primary btn-sm" href="{{ route('categories.create') }}" role="button">Новая
-                            категория</a>
+                        <a class="btn btn-primary btn-sm" href="{{ route('tags.create') }}" role="button">Новый
+                            тег</a>
                     </div>
 
-                    @if($categories->hasPages())
+                    @if($tags->hasPages())
                         <div class="col">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination justify-content-end">
-                                    <li class="page-item @if($categories->onFirstPage()) disabled @endif">
-                                        <a class="page-link" href="{{ $categories->previousPageUrl() }}">Назад</a>
+                                    <li class="page-item @if($tags->onFirstPage()) disabled @endif">
+                                        <a class="page-link" href="{{ $tags->previousPageUrl() }}">Назад</a>
                                     </li>
-                                    @for($i = 1; $i <= $categories->lastPage(); $i++)
-                                        @if($i === 1 || abs($i - $categories->currentPage()) < 3 || $i === $categories->lastPage())
-                                            <li class="page-item {{ ($categories->currentPage() == $i) ? ' active' : '' }}">
-                                                <a class="page-link" href="{{ $categories->url($i)}} ">
+                                    @for($i = 1; $i <= $tags->lastPage(); $i++)
+                                        @if($i === 1 || abs($i - $tags->currentPage()) < 3 || $i === $tags->lastPage())
+                                            <li class="page-item {{ ($tags->currentPage() == $i) ? ' active' : '' }}">
+                                                <a class="page-link" href="{{ $tags->url($i)}} ">
                                                     {{ $i }}
                                                 </a>
                                             </li>
                                         @endif
 
                                     @endfor
-                                    <li class="page-item @if(!$categories->hasMorePages()) disabled @endif">
-                                        <a class="page-link" href="{{ $categories->nextPageUrl() }}">Вперед</a>
+                                    <li class="page-item @if(!$tags->hasMorePages()) disabled @endif">
+                                        <a class="page-link" href="{{ $tags->nextPageUrl() }}">Вперед</a>
                                     </li>
                                 </ul>
                             </nav>

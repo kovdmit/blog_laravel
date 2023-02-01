@@ -21,7 +21,7 @@
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="../../index3.html" class="nav-link">Home</a>
+                <a href="{{ route('admin.index') }}" class="nav-link">Главная</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="#" class="nav-link">Contact</a>
@@ -223,6 +223,29 @@
                                 <a href="{{ route('categories.create') }}" class="nav-link">
                                     <i class="far fa-solid fa-plus nav-icon"></i>
                                     <p>Новая категория</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-solid fa-tags"></i>
+                            <p>
+                                Теги
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('tags.index') }}" class="nav-link">
+                                    <i class="far fa-solid fa-tag nav-icon"></i>
+                                    <p>Список тегов</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('tags.create') }}" class="nav-link">
+                                    <i class="far fa-solid fa-plus nav-icon"></i>
+                                    <p>Новый тег</p>
                                 </a>
                             </li>
                         </ul>
