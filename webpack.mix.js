@@ -13,6 +13,7 @@ const mix = require('laravel-mix');
 
 mix.styles([
     'resources/assets/admin/plugins/fontawesome-free/css/all.css',
+    'resources/assets/admin/css/custom.css',
     'resources/assets/admin/css/adminlte.css',
     'resources/assets/admin/css/adminlte.css',
 ], 'public/assets/admin/css/admin.css');
