@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Blank Page</title>
+    <title>@yield('title')</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -314,10 +314,6 @@
     <!-- /.content-wrapper -->
 
     <footer class="main-footer">
-{{--        <div class="float-right d-none d-sm-block">--}}
-{{--            <b>Version</b> 3.2.0--}}
-{{--        </div>--}}
-{{--        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.--}}
         <strong>2023</strong>
     </footer>
 

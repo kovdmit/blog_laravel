@@ -1,5 +1,9 @@
 @extends('admin.layouts.layout')
 
+@section('title')
+    Публикации
+@endsection
+
 @section('content')
     <!-- Content Header (Page header) -->
     <section class="content-header">
