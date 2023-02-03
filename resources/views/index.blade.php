@@ -8,21 +8,7 @@
     <title>Blog.MySite</title>
 </head>
 <body>
-@if ($errors->any())
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="alert alert-danger">
-                    <ul class="list-unstyled">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-@endif
+
 @if (session()->has('success'))
     <div class="container">
         <div class="row">
@@ -34,6 +20,15 @@
         </div>
     </div>
 @endif
+@if(session()->has('error'))
+    <div class="alert alert-danger">
+        <ul class="list-unstyled">
+            {{ session('error') }}
+        </ul>
+    </div>
+@endif
+@auth() True @endauth
+@guest() False @endguest
 
 </body>
 </html>
