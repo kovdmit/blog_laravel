@@ -335,6 +335,18 @@
         }
     });
 </script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#content'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+<script>
+    $(function () {
+        bsCustomFileInput.init();
+    });
+</script>
 @yield('scripts')
 </body>
 </html>

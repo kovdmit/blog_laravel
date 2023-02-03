@@ -68,7 +68,7 @@
                         </tr>
                         <tr>
                             <td>Основной контент</td>
-                            <td>{{ $post->content }}</td>
+                            <td>{!! $post->content !!}</td>
                         </tr>
                         <tr>
                             <td>Дата создания</td>
