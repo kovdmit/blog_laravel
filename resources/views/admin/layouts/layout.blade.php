@@ -297,17 +297,17 @@
                 </div>
             </div>
         @endif
-            @if (session()->has('success'))
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="alert alert-success">
-                                {{ session('success') }}
-                            </div>
+        @if (session()->has('success'))
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="alert alert-success">
+                            {{ session('success') }}
                         </div>
                     </div>
                 </div>
-            @endif
+            </div>
+        @endif
 
         @yield('content')
     </div>

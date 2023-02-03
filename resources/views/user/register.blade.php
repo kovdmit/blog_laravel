@@ -15,6 +15,7 @@
             <p class="login-box-msg">Регистрация нового пользователя</p>
 
             <form action="{{ route('user.registration.store') }}" method="post">
+                @csrf
                 <div class="input-group mb-3">
                     <input type="text" name="name" class="form-control" placeholder="Имя">
                     <div class="input-group-append">
@@ -76,7 +77,7 @@
                 </a>
             </div>
 
-            <a href="login.html" class="text-center">У меня уже есть учетная запись</a>
+            <a href="{{ route('user.login.create') }}" class="text-center">У меня уже есть учетная запись</a>
         </div>
         <!-- /.form-box -->
     </div><!-- /.card -->

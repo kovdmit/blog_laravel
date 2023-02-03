@@ -15,6 +15,7 @@
             <p class="login-box-msg">Авторизация</p>
 
             <form action="{{ route('user.login.store') }}" method="post">
+                @csrf
                 <div class="input-group mb-3">
                     <input type="email" name="email" class="form-control" placeholder="Email">
                     <div class="input-group-append">
@@ -64,7 +65,7 @@
                 <a href="forgot-password.html">Я забыл мой пароль</a>
             </p>
             <p class="mb-0">
-                <a href="register.html" class="text-center">Регистрация нового пользователя</a>
+                <a href="{{ route('user.registration.create') }}" class="text-center">Регистрация нового пользователя</a>
             </p>
         </div>
         <!-- /.login-card-body -->
