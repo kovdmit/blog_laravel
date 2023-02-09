@@ -54,5 +54,22 @@
     "/assets/admin/webfonts/fa-v4compatibility.woff2": "/assets/admin/webfonts/fa-v4compatibility.woff2",
     "/assets/admin/css/adminlte.min.css.map": "/assets/admin/css/adminlte.min.css.map",
     "/assets/admin/css/adminlte.css.map": "/assets/admin/css/adminlte.css.map",
-    "/assets/admin/js/adminlte.min.js.map": "/assets/admin/js/adminlte.min.js.map"
+    "/assets/admin/js/adminlte.min.js.map": "/assets/admin/js/adminlte.min.js.map",
+    "/assets/front/css/main.css": "/assets/front/css/main.css",
+    "/assets/front/js/main.js": "/assets/front/js/main.js",
+    "/assets/front/img/ads-728x90.png": "/assets/front/img/ads-728x90.png",
+    "/assets/front/img/news-110x110-1.jpg": "/assets/front/img/news-110x110-1.jpg",
+    "/assets/front/img/news-110x110-2.jpg": "/assets/front/img/news-110x110-2.jpg",
+    "/assets/front/img/news-110x110-3.jpg": "/assets/front/img/news-110x110-3.jpg",
+    "/assets/front/img/news-110x110-4.jpg": "/assets/front/img/news-110x110-4.jpg",
+    "/assets/front/img/news-110x110-5.jpg": "/assets/front/img/news-110x110-5.jpg",
+    "/assets/front/img/news-700x435-1.jpg": "/assets/front/img/news-700x435-1.jpg",
+    "/assets/front/img/news-700x435-2.jpg": "/assets/front/img/news-700x435-2.jpg",
+    "/assets/front/img/news-700x435-3.jpg": "/assets/front/img/news-700x435-3.jpg",
+    "/assets/front/img/news-700x435-4.jpg": "/assets/front/img/news-700x435-4.jpg",
+    "/assets/front/img/news-700x435-5.jpg": "/assets/front/img/news-700x435-5.jpg",
+    "/assets/front/img/news-800x500-1.jpg": "/assets/front/img/news-800x500-1.jpg",
+    "/assets/front/img/news-800x500-2.jpg": "/assets/front/img/news-800x500-2.jpg",
+    "/assets/front/img/news-800x500-3.jpg": "/assets/front/img/news-800x500-3.jpg",
+    "/assets/front/img/user.jpg": "/assets/front/img/user.jpg"
 }

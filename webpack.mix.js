@@ -11,6 +11,7 @@ const mix = require('laravel-mix');
  |
  */
 
+// Admin
 mix.styles([
     'resources/assets/admin/plugins/fontawesome-free/css/all.css',
     'resources/assets/admin/css/custom.css',
@@ -37,3 +38,19 @@ mix.copyDirectory('resources/assets/admin/plugins/fontawesome-free/webfonts',
 mix.copy('resources/assets/admin/css/adminlte.min.css.map', 'public/assets/admin/css/adminlte.min.css.map')
 mix.copy('resources/assets/admin/css/adminlte.css.map', 'public/assets/admin/css/adminlte.css.map')
 mix.copy('resources/assets/admin/js/adminlte.min.js.map', 'public/assets/admin/js/adminlte.min.js.map')
+
+// Front
+mix.styles([
+    'resources/assets/front/lib/owlcarousel/assets/owl.carousel.min.css',
+    'resources/assets/front/css/style.css',
+    'resources/assets/front/css/custom.css',
+], 'public/assets/front/css/main.css');
+
+mix.scripts([
+    'resources/assets/front/lib/easing/easing.min.js',
+    'resources/assets/front/lib/owlcarousel/owl.carousel.min.js',
+    'resources/assets/front/js/main.js',
+    'resources/assets/front/js/custom.js',
+], 'public/assets/front/js/main.js');
+
+mix.copyDirectory('resources/assets/front/img', 'public/assets/front/img')
