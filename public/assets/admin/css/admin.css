@@ -7991,6 +7991,18 @@ readers do not read off random characters that represent icons */
     max-height: 150px;
 }
 
+.main-news {
+    color: #4fa913;
+}
+
+.carusel-news {
+    color: #ff0000;
+}
+
+.carusel-news i {
+    color: #ff9100;
+}
+
 /*!
  *   AdminLTE v3.2.0
  *   Author: Colorlib

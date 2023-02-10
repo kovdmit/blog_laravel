@@ -53,6 +53,8 @@ class PostController extends Controller
             'content' => 'required',
             'category_id' => 'required|integer',
             'thumbnail' => 'nullable|image',
+            'main' => 'boolean',
+            'carusel' => 'boolean',
         ]);
         $data['thumbnail'] = Post::uploadImage($request);
 
@@ -106,15 +108,16 @@ class PostController extends Controller
             'content' => 'required',
             'category_id' => 'required|integer',
             'thumbnail' => 'nullable|image',
+            'main' => 'boolean',
+            'carusel' => 'boolean',
         ]);
         if ($request->thumbnail) {
             $data['thumbnail'] = Post::uploadImage($request, $post->thumbnail);
         }
-
+        dump($data);
         $post->update($data);
         $post->tags()->sync($request->tags);
-        $new_title = $post->title;
-        return redirect()->route('posts.index')->with('success', "Публикация \"$old_title\" успешно переименована в \"$new_title\"");
+        return redirect()->route('posts.index')->with('success', "Публикация \"$old_title\" успешно изменена.");
     }
 
     /**

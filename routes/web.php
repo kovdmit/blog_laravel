@@ -36,6 +36,10 @@ Route::group(['namespace' => 'App\Http\Controllers', 'middleware' => 'auth'], fu
     Route::get('logout', 'UserController@logout')->name('user.logout');
 });
 
+Route::group(['namespace' => 'App\Http\Controllers'], function ()
+{
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::resource('category', 'CategoryController');
+});
 
-Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home');
 

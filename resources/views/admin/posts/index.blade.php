@@ -49,6 +49,7 @@
                         <tr>
                             <th style="width: 10px">№</th>
                             <th>Наименование</th>
+                            <th>Статус</th>
                             <th>Категория</th>
                             <th>Теги</th>
                             <th>Дата создания</th>
@@ -60,7 +61,13 @@
                             <tr>
                                 <td>{{ $post->id }}</td>
                                 <td><a href="{{ route('posts.show', ['post' => $post->slug]) }}">{{ $post->title }}</a></td>
-                                <td>{{ $post->category->title }}</td>
+                                <td class="text-center">@if($post->main)
+                                        <i class="fa-brands fa-hotjar fa-lg main-news"></i>
+                                    @endif
+                                    @if($post->carusel)
+                                        <i class="fa-brands fa-hotjar fa-lg carusel-news"></i>
+                                    @endif</td>
+                                    <td>{{ $post->category->title }}</td>
                                 <td>{{ $post->tags->pluck('title')->join(', ') }}</td>
                                 <td>{{ $post->created_at }}</td>
                                 <td>

@@ -38,6 +38,20 @@
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="1" id="main" name="main" @if($post->main) checked @endif>
+                                        <label class="form-check-label" for="main">
+                                            <p class="main-news"><i class="fa-brands fa-hotjar"></i> Главная новость</p>
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="1" id="carusel" name="carusel" @if($post->carusel) checked @endif>
+                                        <label class="form-check-label" for="carusel">
+                                            <p class="carusel-news"><i class="fa-brands fa-hotjar"></i> Показывать в карусели</p>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label for="title">Наименование</label>
                                     <input type="text" class="form-control @error('title') is-invalid @enderror"
                                            name="title" id="title" placeholder="Имя публикации"

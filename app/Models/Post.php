@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class Post extends Model
 {
@@ -56,5 +57,10 @@ class Post extends Model
             return asset('assets/admin/img/no-image.png');
         }
         return asset("/uploads/$this->thumbnail");
+    }
+
+    public function setTitleAttribute($value)
+    {
+        $this->attributes['title'] = Str::title($value);
     }
 }
