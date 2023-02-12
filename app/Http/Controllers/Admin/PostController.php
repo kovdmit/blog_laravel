@@ -57,8 +57,10 @@ class PostController extends Controller
             'carusel' => 'boolean',
         ]);
         $data['thumbnail'] = Post::uploadImage($request);
-
         $post = Post::create($data);
+        $post->main = $data['main'];
+        $post->carusel = $data['carusel'];
+        $post->save();
         $post->tags()->sync($request->tags);
         $title = $data['title'];
         $request->session()->flash('success', "Публикакция \"$title\" успешно добавлена");
@@ -114,7 +116,8 @@ class PostController extends Controller
         if ($request->thumbnail) {
             $data['thumbnail'] = Post::uploadImage($request, $post->thumbnail);
         }
-        dump($data);
+        $post->main = $data['main'];
+        $post->carusel = $data['carusel'];
         $post->update($data);
         $post->tags()->sync($request->tags);
         return redirect()->route('posts.index')->with('success', "Публикация \"$old_title\" успешно изменена.");
@@ -131,7 +134,9 @@ class PostController extends Controller
         $post = Post::query()->get()->where('slug', '=', $slug)->first();
         $title = $post->title;
         $post->tags()->sync([]);
-        Storage::delete($post->thumbnail);
+        if (!empty($post->thumbnail)) {
+            Storage::delete($post->thumbnail);
+        }
         $post->delete();
         return redirect()->route('posts.index')->with('success', "Удаление поста \"$title\" завершено успешно.");
     }
@@ -139,7 +144,6 @@ class PostController extends Controller
     public function delImg($slug)
     {
         $post = Post::query()->get()->where('slug', '=', $slug)->first();
-        Storage::delete($post->thumbnail);
         $post->thumbnail = '';
         $post->save();
         return back()->with('success', 'Удаление изображения успешно завершено.');

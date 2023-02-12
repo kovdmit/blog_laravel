@@ -38,12 +38,14 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <div class="form-check">
+                                        <input type="hidden" value="0" id="main" name="main">
                                         <input class="form-check-input" type="checkbox" value="1" id="main" name="main">
                                         <label class="form-check-label" for="main">
                                             <p class="main-news"><i class="fa-brands fa-hotjar"></i> Главная новость</p>
                                         </label>
                                     </div>
                                     <div class="form-check">
+                                        <input type="hidden" value="0" id="carusel" name="carusel">
                                         <input class="form-check-input" type="checkbox" value="1" id="carusel" name="carusel">
                                         <label class="form-check-label" for="carusel">
                                             <p class="carusel-news"><i class="fa-brands fa-hotjar"></i> Показывать в карусели</p>
@@ -74,7 +76,7 @@
                                 <div class="form-group">
                                     <label for="content">Основной контент</label>
                                     <textarea class="form-control @error('content') is-invalid @enderror" name="content"
-                                              id="content" rows="5"></textarea>
+                                              id="content" rows="5">{{ old('content') }}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="category_id">Выбор категории</label>
