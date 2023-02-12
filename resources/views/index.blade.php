@@ -222,9 +222,22 @@
                         <div class="col-12">
                             <div class="section-title">
                                 <h4 class="m-0 text-uppercase font-weight-bold">Свежие новости</h4>
-                                <a class="text-secondary font-weight-medium text-decoration-none" href="">View All</a>
+                                <a class="text-secondary font-weight-medium text-decoration-none" href="">Посмотреть
+                                    все</a>
                             </div>
                         </div>
+
+                        @php
+                            function truncate(string $str, int $len): string
+                            {
+                                $str_array = explode(' ', $str);
+                                if(count($str_array) > $len) {
+                                    $str_short_array = array_slice($str_array, 0, $len);
+                                    return implode(' ', $str_short_array).'...';
+                                }
+                                return $str;
+                            }
+                        @endphp
 
                         @foreach($posts1_4 as $num => $post)
                             <div class="col-lg-6">
@@ -235,32 +248,15 @@
                                         <div class="mb-2">
                                             <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
                                                href="">{{ $post->category->title }}</a>
-                                            <a class="text-body" href=""><small>{{ $post->created_at }}</small></a>
+                                            <a class="text-body" href=""><small>
+                                                    {{ Carbon\Carbon::parse($post->created_at)->format('d F Y') }}
+                                                </small>
+                                            </a>
                                         </div>
                                         <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold"
-                                           href="">
-                                            @if(count(explode(' ', $post->title)) > 5)
-                                                @php
-                                                    $title_array = explode(' ', $post->title);
-                                                    $title_short_array = array_slice($title_array, 0, 6);
-                                                    $title_short = implode(' ', $title_short_array);
-                                                @endphp
-                                                {{ $title_short }}...
-                                            @else
-                                                {{ $post->title }}
-                                            @endif
-                                        </a>
+                                           href="">{{ truncate($post->title, 5) }}</a>
                                         <p class="m-0">
-                                            @if(count(explode(' ', $post->description)) > 15)
-                                                @php
-                                                    $description_array = explode(' ', $post->description);
-                                                    $description_short_array = array_slice($description_array, 0, 16);
-                                                    $description_short = implode(' ', $description_short_array);
-                                                @endphp
-                                                {{ $description_short }}...
-                                            @else
-                                                {{ $post->description }}
-                                            @endif
+                                            {{ truncate($post->description, 15) }}
                                         </p>
                                     </div>
                                     <div class="d-flex justify-content-between bg-white border border-top-0 p-4">
@@ -296,16 +292,7 @@
                                             <a class="text-body" href=""><small>{{ $post->created_at }}</small></a>
                                         </div>
                                         <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="">
-                                            @if(count(explode(' ', $post->title)) > 5)
-                                                @php
-                                                    $title_array = explode(' ', $post->title);
-                                                    $title_short_array = array_slice($title_array, 0, 6);
-                                                    $title_short = implode(' ', $title_short_array);
-                                                @endphp
-                                                {{ $title_short }}...
-                                            @else
-                                                {{ $post->title }}
-                                            @endif
+                                            {{ truncate($post->title, 5) }}
                                         </a>
                                     </div>
                                 </div>
@@ -315,28 +302,19 @@
                         <div class="col-lg-6">
                             @foreach($posts7_8 as $post)
                                 <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-                                <img class="img-fluid" src="{{ $post->getImage() }}" alt="">
-                                <div
-                                    class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
-                                    <div class="mb-2">
-                                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2"
-                                           href="">{{ $post->category->title }}</a>
-                                        <a class="text-body" href=""><small>{{ $post->created_at }}</small></a>
+                                    <img class="img-fluid" src="{{ $post->getImage() }}" alt="">
+                                    <div
+                                        class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
+                                        <div class="mb-2">
+                                            <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2"
+                                               href="">{{ $post->category->title }}</a>
+                                            <a class="text-body" href=""><small>{{ $post->created_at }}</small></a>
+                                        </div>
+                                        <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="">
+                                            {{ truncate($post->title, 5) }}
+                                        </a>
                                     </div>
-                                    <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="">
-                                        @if(count(explode(' ', $post->title)) > 5)
-                                            @php
-                                                $title_array = explode(' ', $post->title);
-                                                $title_short_array = array_slice($title_array, 0, 6);
-                                                $title_short = implode(' ', $title_short_array);
-                                            @endphp
-                                            {{ $title_short }}...
-                                        @else
-                                            {{ $post->title }}
-                                        @endif
-                                    </a>
                                 </div>
-                            </div>
                             @endforeach
                         </div>
 
@@ -348,7 +326,8 @@
                             <div class="col-lg-12">
                                 <div class="row news-lg mx-0 mb-3">
                                     <div class="col-md-6 h-100 px-0">
-                                        <img class="img-fluid h-100" src="{{ $post->getImage() }}" style="object-fit: cover;">
+                                        <img class="img-fluid h-100" src="{{ $post->getImage() }}"
+                                             style="object-fit: cover;">
                                     </div>
                                     <div class="col-md-6 d-flex flex-column border bg-white h-100 px-0">
                                         <div class="mt-auto p-4">
@@ -357,38 +336,19 @@
                                                    href="">{{ $post->category->title }}</a>
                                                 <a class="text-body" href=""><small>{{ $post->created_at }}</small></a>
                                             </div>
-                                            <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="">
-                                                @if(count(explode(' ', $post->title)) > 5)
-                                                    @php
-                                                        $title_array = explode(' ', $post->title);
-                                                        $title_short_array = array_slice($title_array, 0, 6);
-                                                        $title_short = implode(' ', $title_short_array);
-                                                    @endphp
-                                                    {{ $title_short }}...
-                                                @else
-                                                    {{ $post->title }}
-                                                @endif
-                                            </a>
-                                            <p class="m-0">
-                                                @if(count(explode(' ', $post->description)) > 15)
-                                                    @php
-                                                        $description_array = explode(' ', $post->description);
-                                                        $description_short_array = array_slice($description_array, 0, 16);
-                                                        $description_short = implode(' ', $description_short_array);
-                                                    @endphp
-                                                    {{ $description_short }}...
-                                                @else
-                                                    {{ $post->description }}
-                                                @endif
-                                            </p>
+                                            <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold"
+                                               href="">{{ truncate($post->title, 5) }}</a>
+                                            <p class="m-0">{{ truncate($post->description, 15) }}</p>
                                         </div>
                                         <div class="d-flex justify-content-between bg-white border-top mt-auto p-4">
                                             <div class="d-flex align-items-center">
-                                                <img class="rounded-circle mr-2" src="img/user.jpg" width="25" height="25" alt="">
+                                                <img class="rounded-circle mr-2" src="img/user.jpg" width="25"
+                                                     height="25" alt="">
                                                 <small>John Doe</small>
                                             </div>
                                             <div class="d-flex align-items-center">
-                                                <small class="ml-3"><i class="far fa-eye mr-2"></i>12345</small>
+                                                <small class="ml-3"><i class="far fa-eye mr-2"></i>{{ $post->views }}
+                                                </small>
                                                 <small class="ml-3"><i class="far fa-comment mr-2"></i>123</small>
                                             </div>
                                         </div>
@@ -409,16 +369,7 @@
                                             <a class="text-body" href=""><small>{{ $post->created_at }}</small></a>
                                         </div>
                                         <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="">
-                                            @if(count(explode(' ', $post->title)) > 5)
-                                                @php
-                                                    $title_array = explode(' ', $post->title);
-                                                    $title_short_array = array_slice($title_array, 0, 6);
-                                                    $title_short = implode(' ', $title_short_array);
-                                                @endphp
-                                                {{ $title_short }}...
-                                            @else
-                                                {{ $post->title }}
-                                            @endif
+                                            {{ truncate($post->title, 5) }}
                                         </a>
                                     </div>
                                 </div>
@@ -437,16 +388,7 @@
                                             <a class="text-body" href=""><small>{{ $post->created_at }}</small></a>
                                         </div>
                                         <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="">
-                                            @if(count(explode(' ', $post->title)) > 5)
-                                                @php
-                                                    $title_array = explode(' ', $post->title);
-                                                    $title_short_array = array_slice($title_array, 0, 6);
-                                                    $title_short = implode(' ', $title_short_array);
-                                                @endphp
-                                                {{ $title_short }}...
-                                            @else
-                                                {{ $post->title }}
-                                            @endif
+                                            {{ truncate($post->title, 5) }}
                                         </a>
                                     </div>
                                 </div>
