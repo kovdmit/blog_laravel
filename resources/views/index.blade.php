@@ -6,108 +6,70 @@
     <meta content="Free HTML Templates" name="description">
 @endsection
 
+@php
+    function truncate(string $str, int $len): string
+    {
+        $str_array = explode(' ', $str);
+        if(count($str_array) > $len) {
+            $str_short_array = array_slice($str_array, 0, $len);
+            return implode(' ', $str_short_array).'...';
+        }
+        return $str;
+    }
+@endphp
+
 @section('content')
     <!-- Main News Slider Start -->
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-7 px-0">
                 <div class="owl-carousel main-carousel position-relative">
-                    <div class="position-relative overflow-hidden" style="height: 500px;">
-                        <img class="img-fluid h-100" src="img/news-800x500-1.jpg" style="object-fit: cover;">
-                        <div class="overlay">
-                            <div class="mb-2">
-                                <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
-                                   href="">Business</a>
-                                <a class="text-white" href="">Jan 01, 2045</a>
+
+                    @foreach($carusel as $post)
+                        <div class="position-relative overflow-hidden" style="height: 500px;">
+                            <img class="img-fluid h-100" src="{{ $post->getImage() }}" style="object-fit: cover;">
+                            <div class="overlay">
+                                <div class="mb-2">
+                                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
+                                       href="">{{ $post->category->title }}</a>
+                                    <a class="text-white" href="">
+                                        {{ Carbon\Carbon::parse($post->created_at)->format('d F Y') }}
+                                    </a>
+                                </div>
+                                <a class="h2 m-0 text-white text-uppercase font-weight-bold" href="">
+                                    {{ truncate($post->title, 9) }}
+                                </a>
                             </div>
-                            <a class="h2 m-0 text-white text-uppercase font-weight-bold" href="">Lorem ipsum dolor sit
-                                amet elit. Proin vitae porta diam...</a>
                         </div>
-                    </div>
-                    <div class="position-relative overflow-hidden" style="height: 500px;">
-                        <img class="img-fluid h-100" src="img/news-800x500-2.jpg" style="object-fit: cover;">
-                        <div class="overlay">
-                            <div class="mb-2">
-                                <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
-                                   href="">Business</a>
-                                <a class="text-white" href="">Jan 01, 2045</a>
-                            </div>
-                            <a class="h2 m-0 text-white text-uppercase font-weight-bold" href="">Lorem ipsum dolor sit
-                                amet elit. Proin vitae porta diam...</a>
-                        </div>
-                    </div>
-                    <div class="position-relative overflow-hidden" style="height: 500px;">
-                        <img class="img-fluid h-100" src="img/news-800x500-3.jpg" style="object-fit: cover;">
-                        <div class="overlay">
-                            <div class="mb-2">
-                                <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
-                                   href="">Business</a>
-                                <a class="text-white" href="">Jan 01, 2045</a>
-                            </div>
-                            <a class="h2 m-0 text-white text-uppercase font-weight-bold" href="">Lorem ipsum dolor sit
-                                amet elit. Proin vitae porta diam...</a>
-                        </div>
-                    </div>
+                    @endforeach
+
                 </div>
             </div>
             <div class="col-lg-5 px-0">
                 <div class="row mx-0">
-                    <div class="col-md-6 px-0">
-                        <div class="position-relative overflow-hidden" style="height: 250px;">
-                            <img class="img-fluid w-100 h-100" src="img/news-700x435-1.jpg" style="object-fit: cover;">
-                            <div class="overlay">
-                                <div class="mb-2">
-                                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
-                                       href="">Business</a>
-                                    <a class="text-white" href=""><small>Jan 01, 2045</small></a>
+
+                    @foreach($main as $post)
+                        <div class="col-md-6 px-0">
+                            <div class="position-relative overflow-hidden" style="height: 250px;">
+                                <img class="img-fluid w-100 h-100" src="{{ $post->getImage() }}" style="object-fit: cover;">
+                                <div class="overlay">
+                                    <div class="mb-2">
+                                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
+                                           href="">{{ $post->category->title }}</a>
+                                        <a class="text-white" href="">
+                                            <small>
+                                                {{ Carbon\Carbon::parse($post->created_at)->format('d F Y') }}
+                                            </small>
+                                        </a>
+                                    </div>
+                                    <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="">
+                                        {{ truncate($post->title, 5) }}
+                                    </a>
                                 </div>
-                                <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="">Lorem ipsum
-                                    dolor sit amet elit...</a>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 px-0">
-                        <div class="position-relative overflow-hidden" style="height: 250px;">
-                            <img class="img-fluid w-100 h-100" src="img/news-700x435-2.jpg" style="object-fit: cover;">
-                            <div class="overlay">
-                                <div class="mb-2">
-                                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
-                                       href="">Business</a>
-                                    <a class="text-white" href=""><small>Jan 01, 2045</small></a>
-                                </div>
-                                <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="">Lorem ipsum
-                                    dolor sit amet elit...</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 px-0">
-                        <div class="position-relative overflow-hidden" style="height: 250px;">
-                            <img class="img-fluid w-100 h-100" src="img/news-700x435-3.jpg" style="object-fit: cover;">
-                            <div class="overlay">
-                                <div class="mb-2">
-                                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
-                                       href="">Business</a>
-                                    <a class="text-white" href=""><small>Jan 01, 2045</small></a>
-                                </div>
-                                <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="">Lorem ipsum
-                                    dolor sit amet elit...</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 px-0">
-                        <div class="position-relative overflow-hidden" style="height: 250px;">
-                            <img class="img-fluid w-100 h-100" src="img/news-700x435-4.jpg" style="object-fit: cover;">
-                            <div class="overlay">
-                                <div class="mb-2">
-                                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
-                                       href="">Business</a>
-                                    <a class="text-white" href=""><small>Jan 01, 2045</small></a>
-                                </div>
-                                <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="">Lorem ipsum
-                                    dolor sit amet elit...</a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+
                 </div>
             </div>
         </div>
@@ -121,7 +83,7 @@
                 <div class="col-12">
                     <div class="d-flex justify-content-between">
                         <div class="bg-primary text-dark text-center font-weight-medium py-2" style="width: 170px;">
-                            Breaking News
+                            Молния
                         </div>
                         <div
                             class="owl-carousel tranding-carousel position-relative d-inline-flex align-items-center ml-3"
@@ -144,7 +106,7 @@
     <div class="container-fluid pt-5 mb-3">
         <div class="container">
             <div class="section-title">
-                <h4 class="m-0 text-uppercase font-weight-bold">Featured News</h4>
+                <h4 class="m-0 text-uppercase font-weight-bold">Рекомендуемые новости</h4>
             </div>
             <div class="owl-carousel news-carousel carousel-item-4 position-relative">
                 <div class="position-relative overflow-hidden" style="height: 300px;">
@@ -227,23 +189,13 @@
                             </div>
                         </div>
 
-                        @php
-                            function truncate(string $str, int $len): string
-                            {
-                                $str_array = explode(' ', $str);
-                                if(count($str_array) > $len) {
-                                    $str_short_array = array_slice($str_array, 0, $len);
-                                    return implode(' ', $str_short_array).'...';
-                                }
-                                return $str;
-                            }
-                        @endphp
-
                         @foreach($posts1_4 as $num => $post)
                             <div class="col-lg-6">
                                 <div class="position-relative mb-3">
-                                    <img class="img-fluid w-100" src="{{ $post->getImage() }}"
-                                         style="object-fit: cover;">
+                                    <div>
+                                        <img class="img-fluid w-100" src="{{ $post->getImage() }}"
+                                              style="object-fit: cover;">
+                                    </div>
                                     <div class="bg-white border border-top-0 p-4">
                                         <div class="mb-2">
                                             <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
@@ -283,9 +235,10 @@
                         <div class="col-lg-6">
                             @foreach($posts5_6 as $post)
                                 <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-                                    <img class="img-fluid" src="{{ $post->getImage() }}" alt="">
-                                    <div
-                                        class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
+                                    <div>
+                                        <img class="img-fluid small-news" src="{{ $post->getImage() }}" alt="">
+                                    </div>
+                                    <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
                                         <div class="mb-2">
                                             <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2"
                                                href="">{{ $post->category->title }}</a>
@@ -302,7 +255,7 @@
                         <div class="col-lg-6">
                             @foreach($posts7_8 as $post)
                                 <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-                                    <img class="img-fluid" src="{{ $post->getImage() }}" alt="">
+                                    <img class="img-fluid small-news" src="{{ $post->getImage() }}" alt="">
                                     <div
                                         class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
                                         <div class="mb-2">
@@ -360,7 +313,7 @@
                         <div class="col-lg-6">
                             @foreach($posts10_11 as $post)
                                 <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-                                    <img class="img-fluid" src="{{ $post->getImage() }}" alt="">
+                                    <img class="img-fluid small-news" src="{{ $post->getImage() }}" alt="">
                                     <div
                                         class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
                                         <div class="mb-2">
@@ -379,7 +332,7 @@
                         <div class="col-lg-6">
                             @foreach($posts12_13 as $post)
                                 <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-                                    <img class="img-fluid" src="{{ $post->getImage() }}" alt="">
+                                    <img class="img-fluid small-news" src="{{ $post->getImage() }}" alt="">
                                     <div
                                         class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
                                         <div class="mb-2">

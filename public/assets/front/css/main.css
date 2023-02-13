@@ -9685,3 +9685,13 @@ h6,
 .img-fluid {
     max-height: 100%;
 }
+
+.small-news {
+    max-width: 110px;
+}
+
+.border-r {
+    border-top: 1px solid #E4E7ED !important;
+    border-bottom: 1px solid #E4E7ED !important;
+    border-left: 1px solid #E4E7ED !important;
+}
