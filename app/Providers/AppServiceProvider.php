@@ -25,8 +25,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('layouts.header', function ($view) {
-            $view->with('categories', Category::query()->pluck('title', 'slug'));
+        $categories = Category::query()->pluck('title', 'slug');
+        View::composer('layouts.header', function ($view) use ($categories) {
+            $view->with('categories', $categories);
+        });
+        View::composer('layouts.footer', function ($view) use ($categories) {
+            $view->with('categories', $categories);
         });
     }
 }
