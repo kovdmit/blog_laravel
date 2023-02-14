@@ -54,11 +54,20 @@ class HomeController extends Controller
      */
     public function categoryIndex()
     {
-        $categories = Category::query()->with(['posts' => function($query) {
-            $query->orderBy('created_at', 'desc')->limit(40);
-        }])
-            ->get();
-        return view('categories', compact('categories'));
+        $posts = DB::select('
+            SELECT c.slug as category_slug, c.title as category_title, p.*
+            FROM categories c
+            JOIN posts p ON c.id = p.category_id
+            WHERE (
+                SELECT COUNT(*)
+                FROM posts
+                WHERE posts.category_id = c.id AND posts.created_at <= p.created_at
+            ) <= 4
+            ORDER BY c.id, p.created_at DESC
+        ');
+
+
+        return view('categories', compact('posts'));
     }
 
     /**

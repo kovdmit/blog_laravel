@@ -33,45 +33,45 @@
                             </div>
                         </div>
 
-                        @foreach($categories as $category)
-                            @if(count($category->posts) != 0)
-
+                        @foreach($posts as $i => $post)
+                            @if($i === 0 || $i % 4 === 0)
                                 <div class="col-lg-12 mb-3">
-                                    <a href="{{ route('category.show', ['slug' => $category->slug]) }}">
-                                        <h5 class="m-0 text-uppercase font-weight-bold text-right pr-3 pt-3">{{ $category->title }}</h5>
+                                    <a href="{{ route('category.show', ['slug' => $post->category_slug]) }}">
+                                        <h5 class="m-0 text-uppercase font-weight-bold text-right pr-3 pt-3">{{ $post->category_title }}</h5>
                                     </a>
                                 </div>
-
-                                @foreach($category->posts as $i => $post)
-                                    @if($i < 4)
-                                        <div class="col-lg-6">
-                                            <div class="d-flex align-items-center bg-white mb-3 border"
-                                                 style="height: 110px;">
-                                                <img class="img-fluid small-news" src="{{ $post->getImage() }}" alt="">
-                                                <div
-                                                    class="w-100 h-100 px-3 d-flex flex-column justify-content-center">
-                                                    <div class="mb-2">
-                                                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2"
-                                                           href="{{ route('category.show', ['slug' => $category->slug]) }}">
-                                                            {{ $category->title }}
-                                                        </a>
-                                                        <a class="text-body">
-                                                            <small>
-                                                                {{ Carbon\Carbon::parse($post->created_at)->format('d F Y') }}
-                                                            </small>
-                                                        </a>
-                                                    </div>
-                                                    <a class="h6 m-0 text-secondary text-uppercase font-weight-bold"
-                                                       href="{{ route('post.show', ['slug' => $post->slug]) }}">
-                                                        {{ truncate($post->title, 5) }}
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endif
-
-                                @endforeach
                             @endif
+
+                            <div class="col-lg-6">
+                                <div class="d-flex align-items-center bg-white mb-3 border"
+                                     style="height: 110px;">
+                                    <img class="img-fluid small-news" src="
+                                        @if(!$post->thumbnail)
+                                            assets/admin/img/no-image.png
+                                        @else
+                                            /uploads/{{ $post->thumbnail }}
+                                        @endif
+                                    " alt="">
+                                    <div
+                                        class="w-100 h-100 px-3 d-flex flex-column justify-content-center">
+                                        <div class="mb-2">
+                                            <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2"
+                                               href="{{ route('category.show', ['slug' => $post->category_slug]) }}">
+                                                {{ $post->category_title }}
+                                            </a>
+                                            <a class="text-body">
+                                                <small>
+                                                    {{ Carbon\Carbon::parse($post->created_at)->format('d F Y') }}
+                                                </small>
+                                            </a>
+                                        </div>
+                                        <a class="h6 m-0 text-secondary text-uppercase font-weight-bold"
+                                           href="{{ route('post.show', ['slug' => $post->slug]) }}">
+                                            {{ truncate($post->title, 5) }}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         @endforeach
 
                     </div>
