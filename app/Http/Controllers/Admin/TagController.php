@@ -9,7 +9,6 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class TagController extends Controller
 {
@@ -54,10 +53,10 @@ class TagController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  string $slug
+     * @param string $slug
      * @return Application|Factory|View
      */
-    public function edit($slug)
+    public function edit(string $slug)
     {
         $tag = Tag::query()->where('slug', '=', $slug)->first();
         return view('admin.tags.edit', compact('tag'));
@@ -67,10 +66,10 @@ class TagController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  string $slug
+     * @param string $slug
      * @return RedirectResponse
      */
-    public function update(Request $request, $slug)
+    public function update(Request $request, string $slug)
     {
         $tag = Tag::query()->where('slug', '=', $slug)->first();
         $old_title = $tag->title;
@@ -85,10 +84,10 @@ class TagController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  string $slug
+     * @param string $slug
      * @return RedirectResponse
      */
-    public function destroy($slug)
+    public function destroy(string $slug)
     {
         $tag = Tag::query()->get()->where('slug', '=', $slug)->first();
         $title = $tag->title;

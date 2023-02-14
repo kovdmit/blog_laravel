@@ -5,16 +5,13 @@
             <nav class="navbar navbar-expand-sm bg-dark p-0">
                 <ul class="navbar-nav ml-n2">
                     <li class="nav-item border-right border-secondary">
-                        <a class="nav-link text-body small" href="#">Monday, January 1, 2045</a>
+                        <a class="nav-link text-body small" href="#">{{ now() }}</a>
                     </li>
                     <li class="nav-item border-right border-secondary">
-                        <a class="nav-link text-body small" href="#">Advertise</a>
-                    </li>
-                    <li class="nav-item border-right border-secondary">
-                        <a class="nav-link text-body small" href="#">Contact</a>
+                        <a class="nav-link text-body small" href="#">Контакты</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-body small" href="#">Login</a>
+                        <a class="nav-link text-body small" href="#">Войти</a>
                     </li>
                 </ul>
             </nav>
@@ -23,22 +20,22 @@
             <nav class="navbar navbar-expand-sm bg-dark p-0">
                 <ul class="navbar-nav ml-auto mr-n2">
                     <li class="nav-item">
-                        <a class="nav-link text-body" href="#"><small class="fab fa-twitter"></small></a>
+                        <a class="nav-link text-body" href="https://t.me/i76700" target="_blank"><small class="fab fa-telegram-plane"></small></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-body" href="#"><small class="fab fa-facebook-f"></small></a>
+                        <a class="nav-link text-body" href="https://vk.com/kovdmit" target="_blank"><small class="fab fa-vk"></small></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-body" href="#"><small class="fab fa-linkedin-in"></small></a>
+                        <a class="nav-link text-body" href="https://twitter.com/kovdmit" target="_blank"><small class="fab fa-twitter"></small></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-body" href="#"><small class="fab fa-instagram"></small></a>
+                        <a class="nav-link text-body" href="https://www.facebook.com/kovdmit" target="_blank"><small class="fab fa-facebook-f"></small></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-body" href="#"><small class="fab fa-google-plus-g"></small></a>
+                        <a class="nav-link text-body" href="https://www.instagram.com/kovdmit/" target="_blank"><small class="fab fa-instagram"></small></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-body" href="#"><small class="fab fa-youtube"></small></a>
+                        <a class="nav-link text-body" href="https://www.youtube.com/@user-uo2yh9ij4w/" target="_blank"><small class="fab fa-youtube"></small></a>
                     </li>
                 </ul>
             </nav>
@@ -47,7 +44,7 @@
     <div class="row align-items-center bg-white py-3 px-lg-5">
         <div class="col-lg-4">
             <a href="index.html" class="navbar-brand p-0 d-none d-lg-block">
-                <h1 class="m-0 display-4 text-uppercase text-primary">Biz<span class="text-secondary font-weight-normal">News</span></h1>
+                <h1 class="m-0 display-4 text-uppercase text-primary">Fresh<span class="text-secondary font-weight-normal">News</span></h1>
             </a>
         </div>
         <div class="col-lg-8 text-center text-lg-right">

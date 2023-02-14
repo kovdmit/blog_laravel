@@ -20,6 +20,7 @@ Route::group(['prefix' => 'admin', 'namespace' => '\App\Http\Controllers\Admin',
     Route::resource('categories', 'CategoryController');
     Route::resource('tags', 'TagController');
     Route::resource('posts', 'PostController');
+    Route::resource('lightning', 'LightningController');
     Route::get('posts/{slug}/del-img', 'PostController@delImg')->name('img-post-del');
 });
 

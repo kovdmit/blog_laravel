@@ -204,6 +204,33 @@
                             </p>
                         </a>
                     </li>
+
+{{--                    Lightning--}}
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa-solid fa-cloud-bolt"></i>
+                            <p>
+                                Молния
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('lightning.index') }}" class="nav-link">
+                                    <i class="fa-solid fa-bolt nav-icon"></i>
+                                    <p>Список молний</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('lightning.create') }}" class="nav-link">
+                                    <i class="far fa-solid fa-plus nav-icon"></i>
+                                    <p>Новая молния</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+{{--                    Category--}}
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-solid fa-list"></i>
@@ -227,6 +254,8 @@
                             </li>
                         </ul>
                     </li>
+
+{{--                    Post--}}
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-solid fa-ticket"></i>
@@ -250,6 +279,8 @@
                             </li>
                         </ul>
                     </li>
+
+{{--                    Tag--}}
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-solid fa-tags"></i>

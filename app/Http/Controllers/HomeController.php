@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lightning;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -37,7 +38,8 @@ class HomeController extends Controller
             }
         }
 
+        $lightnings = Lightning::query()->orderBy('created_at', 'desc')->limit(10)->get();
 
-        return view('index', compact( 'posts1_4', 'posts5_6', 'posts7_8', 'post9', 'posts10_11', 'posts12_13', 'main', 'carusel'));
+        return view('index', compact( 'posts1_4', 'posts5_6', 'posts7_8', 'post9', 'posts10_11', 'posts12_13', 'main', 'carusel', 'lightnings'));
     }
 }

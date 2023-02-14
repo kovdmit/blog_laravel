@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('title')
-    <title>BizNews - Free News Website Template</title>
+    <title>FreshNews</title>
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
 @endsection
@@ -88,12 +88,15 @@
                         <div
                             class="owl-carousel tranding-carousel position-relative d-inline-flex align-items-center ml-3"
                             style="width: calc(100% - 170px); padding-right: 90px;">
-                            <div class="text-truncate"><a class="text-white text-uppercase font-weight-semi-bold"
-                                                          href="">Lorem ipsum dolor sit amet elit. Proin interdum lacus
-                                    eget ante tincidunt, sed faucibus nisl sodales</a></div>
-                            <div class="text-truncate"><a class="text-white text-uppercase font-weight-semi-bold"
-                                                          href="">Lorem ipsum dolor sit amet elit. Proin interdum lacus
-                                    eget ante tincidunt, sed faucibus nisl sodales</a></div>
+
+                            @foreach($lightnings as $lightning)
+                                <div class="text-truncate">
+                                    <a class="text-white text-uppercase font-weight-semi-bold" href="">
+                                        {{ $lightning->content }}
+                                    </a>
+                                </div>
+                            @endforeach
+
                         </div>
                     </div>
                 </div>

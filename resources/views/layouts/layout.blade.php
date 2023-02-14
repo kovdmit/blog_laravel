@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     @section('title')
-        <title>BizNews - Free News Website Template</title>
+        <title>FreshNews</title>
         <meta content="Free HTML Templates" name="keywords">
         <meta content="Free HTML Templates" name="description">
     @show
