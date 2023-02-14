@@ -2,9 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Lightning;
 use App\Models\Post;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -15,11 +21,9 @@ class HomeController extends Controller
             ->orderBy('created_at', 'desc')
             ->limit(13)->get();
         $posts1_4 = $last_posts->slice(0, 4);
-        $posts5_6 = $last_posts->slice(4, 2);
-        $posts7_8 = $last_posts->slice(6, 2);
+        $posts5_8 = $last_posts->slice(4, 4);
         $post9 = $last_posts->slice(8, 1);
-        $posts10_11 = $last_posts->slice(9, 2);
-        $posts12_13 = $last_posts->slice(11, 2);
+        $posts10_13 = $last_posts->slice(9, 4);
 
         $post_main = Post::query()
             ->with('category')
@@ -40,6 +44,45 @@ class HomeController extends Controller
 
         $lightnings = Lightning::query()->orderBy('created_at', 'desc')->limit(10)->get();
 
-        return view('index', compact( 'posts1_4', 'posts5_6', 'posts7_8', 'post9', 'posts10_11', 'posts12_13', 'main', 'carusel', 'lightnings'));
+        return view('index', compact( 'posts1_4', 'posts5_8', 'post9', 'posts10_13', 'main', 'carusel', 'lightnings'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Application|Factory|View
+     */
+    public function categoryIndex()
+    {
+        $categories = Category::query()->with(['posts' => function($query) {
+            $query->orderBy('created_at', 'desc')->limit(40);
+        }])
+            ->get();
+        return view('categories', compact('categories'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param string $slug
+     * @return Application|Factory|View
+     */
+    public function categoryShow(string $slug)
+    {
+        $category = Category::query()
+            ->with('posts')
+            ->where('slug', '=', $slug)
+            ->first();
+        $posts = Post::query()
+            ->where('category_id', '=', $category->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        return view('category', compact('category', 'posts'));
+    }
+
+    public function postShow(string $slug)
+    {
+        return view('single');
     }
 }
