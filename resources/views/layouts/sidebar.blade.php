@@ -92,7 +92,8 @@
                                 </small>
                             </a>
                         </div>
-                        <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="{{ route('post.show', ['slug' => $post->slug]) }}">{{ $post->title }}</a>
+                        <a class="h6 m-0 text-secondary text-uppercase font-weight-bold"
+                           href="{{ route('post.show', ['slug' => $post->slug]) }}">{{ $post->title }}</a>
                     </div>
                 </div>
             @endforeach
@@ -108,12 +109,14 @@
         </div>
         <div class="bg-white text-center border border-top-0 p-3">
             <p>Получайте уведомления о свежих новостях на свою электронную почту.</p>
-            <div class="input-group mb-2" style="width: 100%;">
-                <input type="text" class="form-control form-control-lg" placeholder="Введите Email">
-                <div class="input-group-append">
-                    <button class="btn btn-primary font-weight-bold px-3">Подписаться</button>
+            <form>
+                <div class="input-group mb-2" style="width: 100%;">
+                    <input type="email" class="form-control form-control-lg" placeholder="Введите Email">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary font-weight-bold px-3">Подписаться</button>
+                    </div>
                 </div>
-            </div>
+            </form>
             <small>Подписку можно отменить в любое время.</small>
         </div>
     </div>
@@ -128,9 +131,8 @@
         <div class="bg-white border border-top-0 p-3">
             <div class="d-flex flex-wrap m-n1">
 
-                @foreach($tags as $tag)
-                    <a href=""
-                       class="btn btn-sm btn-outline-secondary m-1">{{ $tag->title }}</a>
+                @foreach($tags as $slug => $title)
+                    <a class="btn btn-sm btn-outline-secondary m-1">{{ $title }}</a>
                 @endforeach
 
             </div>

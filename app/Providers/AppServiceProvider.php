@@ -28,12 +28,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         $categories = Category::query()->pluck('title', 'slug');
+        $tags = Tag::query()->pluck('title', 'slug');
         $popular_news = Post::query()
             ->with('category')
             ->orderBy('views', 'desc')
             ->limit(3)
             ->get();
-        $tags = Tag::query()->get();
         View::composer('layouts.header', function ($view) use ($categories) {
             $view->with(['categories' => $categories]);
         });
