@@ -161,41 +161,47 @@
                             <h4 class="m-0 text-uppercase font-weight-bold">Мы в соцсетях</h4>
                         </div>
                         <div class="bg-white border border-top-0 p-3">
-                            <a href="" class="d-block w-100 text-white text-decoration-none mb-3"
-                               style="background: #39569E;">
-                                <i class="fab fa-facebook-f text-center py-4 mr-3"
+                            <a href="https://t.me/i76700" class="d-block w-100 text-white text-decoration-none mb-3"
+                               style="background: #0088cc;">
+                                <i class="fab fa-telegram-plane text-center py-4 mr-3"
                                    style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
                                 <span class="font-weight-medium">12,345 Fans</span>
                             </a>
-                            <a href="" class="d-block w-100 text-white text-decoration-none mb-3"
+                            <a href="https://vk.com/kovdmit" class="d-block w-100 text-white text-decoration-none mb-3"
+                               style="background: #4C75A3">
+                                <i class="fab fa-vk text-center py-4 mr-3"
+                                   style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
+                                <span class="font-weight-medium">12,345 Fans</span>
+                            </a>
+                            <a href="https://twitter.com/kovdmit" class="d-block w-100 text-white text-decoration-none mb-3"
                                style="background: #52AAF4;">
                                 <i class="fab fa-twitter text-center py-4 mr-3"
                                    style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
                                 <span class="font-weight-medium">12,345 Followers</span>
                             </a>
-                            <a href="" class="d-block w-100 text-white text-decoration-none mb-3"
+                            <a href="https://www.facebook.com/kovdmit" class="d-block w-100 text-white text-decoration-none mb-3"
+                               style="background: #39569E;">
+                                <i class="fab fa-facebook-f text-center py-4 mr-3"
+                                   style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
+                                <span class="font-weight-medium">12,345 Followers</span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/kovdmit/" class="d-block w-100 text-white text-decoration-none mb-3"
                                style="background: #0185AE;">
                                 <i class="fab fa-linkedin-in text-center py-4 mr-3"
                                    style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
                                 <span class="font-weight-medium">12,345 Connects</span>
                             </a>
-                            <a href="" class="d-block w-100 text-white text-decoration-none mb-3"
+                            <a href="https://www.linkedin.com/in/kovdmit/" class="d-block w-100 text-white text-decoration-none mb-3"
                                style="background: #C8359D;">
                                 <i class="fab fa-instagram text-center py-4 mr-3"
                                    style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
                                 <span class="font-weight-medium">12,345 Followers</span>
                             </a>
-                            <a href="" class="d-block w-100 text-white text-decoration-none mb-3"
+                            <a href="https://www.youtube.com/@user-uo2yh9ij4w/" class="d-block w-100 text-white text-decoration-none mb-3"
                                style="background: #DC472E;">
                                 <i class="fab fa-youtube text-center py-4 mr-3"
                                    style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
                                 <span class="font-weight-medium">12,345 Subscribers</span>
-                            </a>
-                            <a href="" class="d-block w-100 text-white text-decoration-none"
-                               style="background: #055570;">
-                                <i class="fab fa-vimeo-v text-center py-4 mr-3"
-                                   style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
-                                <span class="font-weight-medium">12,345 Followers</span>
                             </a>
                         </div>
                     </div>
