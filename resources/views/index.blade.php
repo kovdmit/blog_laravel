@@ -32,13 +32,15 @@
                             <div class="overlay">
                                 <div class="mb-2">
                                     <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
-                                       href="{{ route('category.show', ['slug' => $post->category->slug]) }}">{{ $post->category->title }}</a>
+                                       href="{{ route('category.show', ['slug' => $post->category->slug]) }}">
+                                       {{ $post->category->title }}
+                                    </a>
                                     <a class="text-white">
                                         {{ Carbon\Carbon::parse($post->created_at)->locale('ru')->isoFormat('D MMMM YYYY') }}
                                     </a>
                                 </div>
                                 <a class="h2 m-0 text-white text-uppercase font-weight-bold"
-                                   href="</a>">
+                                   href="{{ route('post.show', ['slug' => $post->slug]) }}">
                                     {{ truncate($post->title, 9) }}
                                 </a>
                             </div>

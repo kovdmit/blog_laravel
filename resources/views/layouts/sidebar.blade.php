@@ -9,48 +9,48 @@
                style="background: #0088cc;">
                 <i class="fab fa-telegram-plane text-center py-4 mr-3"
                    style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
-                <span class="font-weight-medium">12,345 Fans</span>
+                <span class="font-weight-medium">Написать</span>
             </a>
             <a href="https://vk.com/kovdmit" class="d-block w-100 text-white text-decoration-none mb-3"
                style="background: #4C75A3">
                 <i class="fab fa-vk text-center py-4 mr-3"
                    style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
-                <span class="font-weight-medium">12,345 Fans</span>
+                <span class="font-weight-medium">Подписаться</span>
             </a>
             <a href="https://twitter.com/kovdmit"
                class="d-block w-100 text-white text-decoration-none mb-3"
                style="background: #52AAF4;">
                 <i class="fab fa-twitter text-center py-4 mr-3"
                    style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
-                <span class="font-weight-medium">12,345 Followers</span>
+                <span class="font-weight-medium">Подписаться</span>
             </a>
             <a href="https://www.facebook.com/kovdmit"
                class="d-block w-100 text-white text-decoration-none mb-3"
                style="background: #39569E;">
                 <i class="fab fa-facebook-f text-center py-4 mr-3"
                    style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
-                <span class="font-weight-medium">12,345 Followers</span>
+                <span class="font-weight-medium">Подписаться</span>
             </a>
             <a href="https://www.linkedin.com/in/kovdmit/"
                class="d-block w-100 text-white text-decoration-none mb-3"
                style="background: #0185AE;">
                 <i class="fab fa-linkedin-in text-center py-4 mr-3"
                    style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
-                <span class="font-weight-medium">12,345 Connects</span>
+                <span class="font-weight-medium">Подписаться</span>
             </a>
             <a href="https://instagram.com/kovdmit/"
                class="d-block w-100 text-white text-decoration-none mb-3"
                style="background: #C8359D;">
                 <i class="fab fa-instagram text-center py-4 mr-3"
                    style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
-                <span class="font-weight-medium">12,345 Followers</span>
+                <span class="font-weight-medium">Подписаться</span>
             </a>
             <a href="https://www.youtube.com/@user-uo2yh9ij4w/"
                class="d-block w-100 text-white text-decoration-none mb-3"
                style="background: #DC472E;">
                 <i class="fab fa-youtube text-center py-4 mr-3"
                    style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
-                <span class="font-weight-medium">12,345 Subscribers</span>
+                <span class="font-weight-medium">Подписаться</span>
             </a>
         </div>
     </div>
@@ -62,7 +62,9 @@
             <h4 class="m-0 text-uppercase font-weight-bold">Реклама</h4>
         </div>
         <div class="bg-white text-center border border-top-0 p-3">
-            <a href=""><img class="img-fluid" src="img/news-800x500-2.jpg" alt=""></a>
+            <a href="">
+                <img class="img-fluid" src="{{ asset('assets/front/img/news-800x500-2.jpg') }}" alt="ad">
+            </a>
         </div>
     </div>
     <!-- Ads End -->
@@ -73,71 +75,28 @@
             <h4 class="m-0 text-uppercase font-weight-bold">Популярные новости</h4>
         </div>
         <div class="bg-white border border-top-0 p-3">
-            <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-                <img class="img-fluid" src="img/news-110x110-1.jpg" alt="">
-                <div
-                    class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
-                    <div class="mb-2">
-                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2"
-                           href="">Business</a>
-                        <a class="text-body" href=""><small>Jan 01, 2045</small></a>
+
+            @foreach($popular_news as $post)
+                <div class="d-flex align-items-center bg-white mb-3 border" style="height: 110px;">
+                    <img class="img-fluid small-news" src="{{ $post->getImage() }}" alt="">
+                    <div
+                        class="w-100 h-100 px-3 d-flex flex-column justify-content-center">
+                        <div class="mb-2">
+                            <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2"
+                               href="{{ route('category.show', ['slug' => $post->category->slug]) }}">
+                                {{ $post->category->title }}
+                            </a>
+                            <a class="text-body" href="{{ route('post.show', ['slug' => $post->slug]) }}">
+                                <small>
+                                    {{ \Carbon\Carbon::parse($post->created_at)->locale('ru')->isoFormat('D MM YYYY') }}
+                                </small>
+                            </a>
+                        </div>
+                        <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="{{ route('post.show', ['slug' => $post->slug]) }}">{{ $post->title }}</a>
                     </div>
-                    <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="">Lorem ipsum
-                        dolor sit amet elit...</a>
                 </div>
-            </div>
-            <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-                <img class="img-fluid" src="img/news-110x110-2.jpg" alt="">
-                <div
-                    class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
-                    <div class="mb-2">
-                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2"
-                           href="">Business</a>
-                        <a class="text-body" href=""><small>Jan 01, 2045</small></a>
-                    </div>
-                    <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="">Lorem ipsum
-                        dolor sit amet elit...</a>
-                </div>
-            </div>
-            <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-                <img class="img-fluid" src="img/news-110x110-3.jpg" alt="">
-                <div
-                    class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
-                    <div class="mb-2">
-                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2"
-                           href="">Business</a>
-                        <a class="text-body" href=""><small>Jan 01, 2045</small></a>
-                    </div>
-                    <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="">Lorem ipsum
-                        dolor sit amet elit...</a>
-                </div>
-            </div>
-            <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-                <img class="img-fluid" src="img/news-110x110-4.jpg" alt="">
-                <div
-                    class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
-                    <div class="mb-2">
-                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2"
-                           href="">Business</a>
-                        <a class="text-body" href=""><small>Jan 01, 2045</small></a>
-                    </div>
-                    <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="">Lorem ipsum
-                        dolor sit amet elit...</a>
-                </div>
-            </div>
-            <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-                <img class="img-fluid" src="img/news-110x110-5.jpg" alt="">
-                <div
-                    class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
-                    <div class="mb-2">
-                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2"
-                           href="">Business</a>
-                        <a class="text-body" href=""><small>Jan 01, 2045</small></a>
-                    </div>
-                    <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="">Lorem ipsum
-                        dolor sit amet elit...</a>
-                </div>
-            </div>
+            @endforeach
+
         </div>
     </div>
     <!-- Popular News End -->
@@ -169,9 +128,9 @@
         <div class="bg-white border border-top-0 p-3">
             <div class="d-flex flex-wrap m-n1">
 
-                @foreach($post->tags as $tag)
+                @foreach($tags as $tag)
                     <a href=""
-                       class="btn btn-sm btn-outline-secondary m-1">title</a>
+                       class="btn btn-sm btn-outline-secondary m-1">{{ $tag->title }}</a>
                 @endforeach
 
             </div>
