@@ -92,6 +92,13 @@ class HomeController extends Controller
 
     public function postShow(string $slug)
     {
-        return view('single');
+        $lightnings = Lightning::query()->get();
+        $post = Post::query()
+            ->with('category', 'tags')
+            ->where('slug', '=', $slug)
+            ->first();
+        $post->views++;
+        $post->save();
+        return view('single', compact('lightnings', 'post'));
     }
 }

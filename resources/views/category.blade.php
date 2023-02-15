@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('title')
-    <title>{{ $category->title }} - BizNews</title>
+    <title>{{ $category->title }} - FreshNews</title>
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
 @endsection
