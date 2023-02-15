@@ -27,7 +27,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password)
         ]);
         Auth::login($user);
-        return redirect()->route('home')->with('success', "Регистрация прошла успешно, добро пожаловать, $user->name.");
+        return redirect()->route('home')->with('info', "Регистрация прошла успешно, добро пожаловать, $user->name.");
     }
 
     public function authCreate()
@@ -50,7 +50,8 @@ class UserController extends Controller
                 Auth::logout();
                 return redirect()->route('home');
             }
-            return redirect()->route('home')->with('success', 'Авторизация успешно пройдена');
+            $name = Auth::user()->name;
+            return redirect()->route('home')->with('info', "Мы рады вас видеть, $name. Авторизация успешно пройдена.");
         }
         return redirect()->back()->with('error', 'Неверно введен адрес электронной почты или пароль.');
     }
@@ -58,6 +59,6 @@ class UserController extends Controller
     public function logout()
     {
         Auth::logout();
-        return back()->with('success', 'Вы успешно вышли из своей учетной записи.');
+        return back()->with('info', 'Вы успешно вышли из своей учетной записи.');
     }
 }

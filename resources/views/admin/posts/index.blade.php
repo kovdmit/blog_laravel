@@ -49,6 +49,7 @@
                         <tr>
                             <th style="width: 10px">№</th>
                             <th>Наименование</th>
+                            <th>Фото</th>
                             <th>Статус</th>
                             <th>Категория</th>
                             <th>Теги</th>
@@ -61,6 +62,7 @@
                             <tr>
                                 <td>{{ $post->id }}</td>
                                 <td><a href="{{ route('posts.show', ['post' => $post->slug]) }}">{{ $post->title }}</a></td>
+                                <td><img style="max-width: 110px;" src="{{ $post->getImage() }}" alt=""></td>
                                 <td class="text-center">@if($post->main)
                                         <i class="fa-brands fa-hotjar fa-lg main-news"></i>
                                     @endif

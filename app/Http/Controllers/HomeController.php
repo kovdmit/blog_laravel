@@ -131,7 +131,6 @@ class HomeController extends Controller
             ->orWhere('posts.content', 'like', "%{$query['s']}%")
             ->orderBy('posts.created_at', 'desc')
             ->get();
-//        dd($posts);
         return view('search', compact('posts', 'query'));
     }
 }

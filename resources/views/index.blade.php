@@ -125,14 +125,17 @@
                         <div class="overlay">
                             <div class="mb-2">
                                 <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
-                                   href="">{{ $post->category->title }}</a>
-                                <a class="text-white" href="">
+                                   href="{{ route('category.show', ['slug' => $post->category->slug]) }}">
+                                    {{ $post->category->title }}
+                                </a>
+                                <a class="text-white">
                                     <small>
                                         {{ Carbon\Carbon::parse($post->created_at)->format('d m Y') }}
                                     </small>
                                 </a>
                             </div>
-                            <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="">
+                            <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold"
+                               href="{{ route('post.show', ['slug' => $post->slug]) }}">
                                 {{ truncate($post->title, 5) }}
                             </a>
                         </div>

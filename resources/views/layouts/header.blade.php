@@ -24,7 +24,8 @@
 
                         @if(auth()->user()->staff === 3)
                             <li class="nav-item border-right border-secondary">
-                                <a class="nav-link text-body small" href="{{ route('admin.index') }}">Панель администратора</a>
+                                <a class="nav-link text-body small" href="{{ route('admin.index') }}">Панель
+                                    администратора</a>
                             </li>
                         @endif
 
@@ -40,25 +41,32 @@
             <nav class="navbar navbar-expand-sm bg-dark p-0">
                 <ul class="navbar-nav ml-auto mr-n2">
                     <li class="nav-item">
-                        <a class="nav-link text-body" href="https://t.me/i76700" target="_blank"><small class="fab fa-telegram-plane"></small></a>
+                        <a class="nav-link text-body" href="https://t.me/i76700" target="_blank"><small
+                                class="fab fa-telegram-plane"></small></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-body" href="https://vk.com/kovdmit" target="_blank"><small class="fab fa-vk"></small></a>
+                        <a class="nav-link text-body" href="https://vk.com/kovdmit" target="_blank"><small
+                                class="fab fa-vk"></small></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-body" href="https://www.linkedin.com/in/kovdmit/" target="_blank"><small class="fab fa-linkedin-in"></small></a>
+                        <a class="nav-link text-body" href="https://www.linkedin.com/in/kovdmit/" target="_blank"><small
+                                class="fab fa-linkedin-in"></small></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-body" href="https://twitter.com/kovdmit" target="_blank"><small class="fab fa-twitter"></small></a>
+                        <a class="nav-link text-body" href="https://twitter.com/kovdmit" target="_blank"><small
+                                class="fab fa-twitter"></small></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-body" href="https://www.facebook.com/kovdmit" target="_blank"><small class="fab fa-facebook-f"></small></a>
+                        <a class="nav-link text-body" href="https://www.facebook.com/kovdmit" target="_blank"><small
+                                class="fab fa-facebook-f"></small></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-body" href="https://www.instagram.com/kovdmit/" target="_blank"><small class="fab fa-instagram"></small></a>
+                        <a class="nav-link text-body" href="https://www.instagram.com/kovdmit/" target="_blank"><small
+                                class="fab fa-instagram"></small></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-body" href="https://www.youtube.com/@user-uo2yh9ij4w/" target="_blank"><small class="fab fa-youtube"></small></a>
+                        <a class="nav-link text-body" href="https://www.youtube.com/@user-uo2yh9ij4w/"
+                           target="_blank"><small class="fab fa-youtube"></small></a>
                     </li>
                 </ul>
             </nav>
@@ -67,11 +75,28 @@
     <div class="row align-items-center bg-white py-3 px-lg-5">
         <div class="col-lg-4">
             <a href="{{ route('home') }}" class="navbar-brand p-0 d-none d-lg-block">
-                <h1 class="m-0 display-4 text-uppercase text-primary">Fresh<span class="text-secondary font-weight-normal">News</span></h1>
+                <h1 class="m-0 display-4 text-uppercase text-primary">Fresh<span
+                        class="text-secondary font-weight-normal">News</span></h1>
             </a>
         </div>
         <div class="col-lg-8 text-center text-lg-right">
-            <a href="https://htmlcodex.com"><img class="img-fluid" src="{{ asset('assets/front/img/ads-728x90.png') }}" alt="ad"></a>
+
+            @if (session()->has('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+                @if (session()->has('info'))
+                    <div class="alert alert-warning">
+                        {{ session('info') }}
+                    </div>
+                @endif
+            @if(session()->has('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+
         </div>
     </div>
 </div>
@@ -81,7 +106,8 @@
 <div class="container-fluid p-0">
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-2 py-lg-0 px-lg-5">
         <a href="index.html" class="navbar-brand d-block d-lg-none">
-            <h1 class="m-0 display-4 text-uppercase text-primary">Fresh<span class="text-white font-weight-normal">News</span></h1>
+            <h1 class="m-0 display-4 text-uppercase text-primary">Fresh<span
+                    class="text-white font-weight-normal">News</span></h1>
         </a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -94,7 +120,8 @@
                     <div class="dropdown-menu rounded-0 m-0">
                         <a href="{{ route('category.index') }}" class="dropdown-item"><strong>Все категории</strong></a>
                         @foreach($categories as $slug => $category)
-                            <a href="{{ route('category.show', ['slug' => $slug]) }}" class="dropdown-item">{{ $category }}</a>
+                            <a href="{{ route('category.show', ['slug' => $slug]) }}"
+                               class="dropdown-item">{{ $category }}</a>
                         @endforeach
 
                     </div>

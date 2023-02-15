@@ -24,6 +24,7 @@
 </head>
 
 <body>
+
 @include('layouts.header')
 
 @yield('content')
@@ -42,22 +43,3 @@
 @yield('script')
 </body>
 </html>
-
-@if (session()->has('success'))
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            </div>
-        </div>
-    </div>
-@endif
-@if(session()->has('error'))
-    <div class="alert alert-danger">
-        <ul class="list-unstyled">
-            {{ session('error') }}
-        </ul>
-    </div>
-@endif
