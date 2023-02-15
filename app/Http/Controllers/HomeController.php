@@ -91,6 +91,12 @@ class HomeController extends Controller
         return view('category', compact('category', 'posts'));
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param string $slug
+     * @return Application|Factory|View
+     */
     public function postShow(string $slug)
     {
         $lightnings = Lightning::query()->get();
@@ -101,5 +107,31 @@ class HomeController extends Controller
         $post->views++;
         $post->save();
         return view('single', compact('lightnings', 'post'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param Request $request
+     * @return Application|Factory|View
+     */
+    public function search(Request $request)
+    {
+        $query = $request->validate([
+            's' => 'required',
+        ]);
+        $posts = DB::table('posts')
+            ->select(
+                'categories.id as category_id',
+                'categories.slug as category_slug',
+                'categories.title as category_title',
+                'posts.*')
+            ->join('categories', 'posts.category_id', '=', 'categories.id')
+            ->where('posts.title', 'like', "%{$query['s']}%")
+            ->orWhere('posts.content', 'like', "%{$query['s']}%")
+            ->orderBy('posts.created_at', 'desc')
+            ->get();
+//        dd($posts);
+        return view('search', compact('posts', 'query'));
     }
 }

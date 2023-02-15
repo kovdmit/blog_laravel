@@ -92,7 +92,7 @@
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Категории</a>
                     <div class="dropdown-menu rounded-0 m-0">
-
+                        <a href="{{ route('category.index') }}" class="dropdown-item"><strong>Все категории</strong></a>
                         @foreach($categories as $slug => $category)
                             <a href="{{ route('category.show', ['slug' => $slug]) }}" class="dropdown-item">{{ $category }}</a>
                         @endforeach
@@ -100,7 +100,7 @@
                     </div>
                 </div>
             </div>
-            <form>
+            <form action="{{ route('post.search') }}">
                 <div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
                     <input type="text" name="s" class="form-control border-0" placeholder="Я ищу...">
                     <div class="input-group-append">

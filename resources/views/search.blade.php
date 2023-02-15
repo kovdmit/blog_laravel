@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('title')
-    <title>{{ $category->title }} - FreshNews</title>
+    <title>Поиск по запросу: {{ $query['s'] }} - FreshNews</title>
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
 @endsection
@@ -27,9 +27,8 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="section-title">
-                                <h4 class="m-0 text-uppercase font-weight-bold">Категория: {{ $category->title }}</h4>
-                                <a class="text-secondary font-weight-medium text-decoration-none"
-                                   href="{{ route('category.index') }}">Все категории</a>
+                                <p class="m-0">Поиск по запросу: <strong>{{ $query['s'] }}</strong>.
+                                    Найдено <strong>{{ count($posts) }}</strong> результатов.</p>
                             </div>
                         </div>
 
@@ -37,13 +36,18 @@
                             <div class="col-lg-6">
                                 <div class="position-relative mb-3 border">
                                     <a href="{{ route('post.show', ['slug' => $post->slug]) }}">
-                                        <img class="img-fluid w-100" src="{{ $post->getImage() }}"
-                                             style="object-fit: cover;">
+                                        <img class="img-fluid w-100" src="
+                                        @if(!$post->thumbnail)
+                                            assets/admin/img/no-image.png
+                                        @else
+                                            /uploads/{{ $post->thumbnail }}
+                                        @endif
+                                        " style="object-fit: cover;">
                                     </a>
                                     <div class="bg-white  p-4">
                                         <div class="mb-2">
                                             <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
-                                               href="{{ route('category.show', ['slug' => $post->category->slug]) }}">{{ $post->category->title }}</a>
+                                               href="{{ route('category.show', ['slug' => $post->category_slug]) }}">{{ $post->category_title }}</a>
                                             <a class="text-body"><small>
                                                     {{ Carbon\Carbon::parse($post->created_at)->locale('ru')->isoFormat('D MMMM YYYY') }}
                                                 </small>
