@@ -42,9 +42,10 @@ class HomeController extends Controller
             }
         }
 
+        $pop_news = Post::query()->with('category')->orderBy('views', 'desc')->limit(8)->get();
         $lightnings = Lightning::query()->orderBy('created_at', 'desc')->limit(10)->get();
 
-        return view('index', compact( 'posts1_4', 'posts5_8', 'post9', 'posts10_13', 'main', 'carusel', 'lightnings'));
+        return view('index', compact( 'posts1_4', 'posts5_8', 'post9', 'posts10_13', 'main', 'carusel', 'lightnings', 'pop_news'));
     }
 
     /**

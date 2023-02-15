@@ -5,7 +5,7 @@
             <nav class="navbar navbar-expand-sm bg-dark p-0">
                 <ul class="navbar-nav ml-n2">
                     <li class="nav-item border-right border-secondary">
-                        <a class="nav-link text-body small" href="#">{{ now()->format('d F Y') }}</a>
+                        <a class="nav-link text-body small">{{ now()->format('d F Y') }}</a>
                     </li>
 
                     @guest()
@@ -100,13 +100,15 @@
                     </div>
                 </div>
             </div>
-            <div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
-                <input type="text" class="form-control border-0" placeholder="Keyword">
-                <div class="input-group-append">
-                    <button class="input-group-text bg-primary text-dark border-0 px-3"><i
-                            class="fa fa-search"></i></button>
+            <form>
+                <div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
+                    <input type="text" name="s" class="form-control border-0" placeholder="Я ищу...">
+                    <div class="input-group-append">
+                        <button class="input-group-text bg-primary text-dark border-0 px-3"><i
+                                class="fa fa-search"></i></button>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </nav>
 </div>
