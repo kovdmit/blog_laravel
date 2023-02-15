@@ -58,6 +58,23 @@
                             {{ $post->description }}
                             {!! $post->content !!}
                         </div>
+                        <div>
+                            <div class="section-title mb-0">
+                                <h6 class="m-0">Теги</h6>
+                            </div>
+                            <div class="bg-white border border-top-0 p-3">
+                                <div class="d-flex flex-wrap m-n1">
+
+                                    @foreach($post->tags as $tag)
+                                        <a class="btn btn-sm btn-outline-secondary m-1"
+                                           href="{{ route('tag.show', ['slug' => $tag->slug]) }}">
+                                            {{ $tag->title }}
+                                        </a>
+                                    @endforeach
+
+                                </div>
+                            </div>
+                        </div>
                         <div class="d-flex justify-content-between bg-white border border-top-0 p-4">
                             <div class="d-flex align-items-center">
                                 <img class="rounded-circle mr-2" src="img/user.jpg" width="25" height="25" alt="">

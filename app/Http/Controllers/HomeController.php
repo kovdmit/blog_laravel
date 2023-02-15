@@ -112,6 +112,20 @@ class HomeController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param string $slug
+     * @return Application|Factory|View
+     */
+    public function tagShow(string $slug)
+    {
+        $posts = Post::query()->with('category')->whereHas('tags', function ($query) use ($slug) {
+            $query->where('slug', '=', $slug);
+        })->get();
+        return view('tag', compact('posts', 'slug'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
      * @param Request $request
      * @return Application|Factory|View
      */

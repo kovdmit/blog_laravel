@@ -44,6 +44,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function ()
     Route::get('categories', 'HomeController@categoryIndex')->name('category.index');
     Route::get('categories/{slug}', 'HomeController@categoryShow')->name('category.show');
     Route::get('post/{slug}', 'HomeController@postShow')->name('post.show');
+    Route::get('tag/{slug}', 'HomeController@tagShow')->name('tag.show');
     Route::get('search', 'HomeController@search')->name('post.search');
 });
 
