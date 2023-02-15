@@ -55,7 +55,7 @@
                         <a class="nav-link text-body" href="https://www.facebook.com/kovdmit" target="_blank"><small class="fab fa-facebook-f"></small></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-body" href="https://www.linkedin.com/in/kovdmit/" target="_blank"><small class="fab fa-instagram"></small></a>
+                        <a class="nav-link text-body" href="https://www.instagram.com/kovdmit/" target="_blank"><small class="fab fa-instagram"></small></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-body" href="https://www.youtube.com/@user-uo2yh9ij4w/" target="_blank"><small class="fab fa-youtube"></small></a>

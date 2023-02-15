@@ -191,7 +191,7 @@
                                    style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
                                 <span class="font-weight-medium">12,345 Connects</span>
                             </a>
-                            <a href="https://www.linkedin.com/in/kovdmit/" class="d-block w-100 text-white text-decoration-none mb-3"
+                            <a href="https://instagram.com/kovdmit/" class="d-block w-100 text-white text-decoration-none mb-3"
                                style="background: #C8359D;">
                                 <i class="fab fa-instagram text-center py-4 mr-3"
                                    style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
