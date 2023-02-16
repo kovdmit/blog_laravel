@@ -86,6 +86,12 @@
                             <td>Количество просмотров</td>
                             <td>{{ $post->views }}</td>
                         </tr>
+                        <tr>
+                            <td>Автор</td>
+                            <td><img style="max-width: 50px; margin-right: 10px;" src="{{ $post->author->getImage() }}" alt="avatar">
+                                {{ $post->author->name }}
+                            </td>
+                        </tr>
 
                         </tbody>
                     </table>

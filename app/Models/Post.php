@@ -14,7 +14,7 @@ class Post extends Model
     use HasFactory;
     use Sluggable;
 
-    protected $fillable = ['title', 'description', 'content', 'category_id', 'thumbnail'];
+    protected $fillable = ['title', 'description', 'content', 'category_id', 'thumbnail', 'author_id'];
 
     public function category()
     {

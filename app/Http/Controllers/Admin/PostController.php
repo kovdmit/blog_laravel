@@ -12,6 +12,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -57,6 +58,7 @@ class PostController extends Controller
             'carusel' => 'boolean',
         ]);
         $data['thumbnail'] = Post::uploadImage($request);
+        $data['author_id'] = Auth::user()->id;
         $post = Post::create($data);
         $post->main = $data['main'];
         $post->carusel = $data['carusel'];
