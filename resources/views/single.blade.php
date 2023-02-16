@@ -82,43 +82,48 @@
                             </div>
                             <div class="d-flex align-items-center">
                                 <span class="ml-3"><i class="far fa-eye mr-2"></i>{{ $post->views }}</span>
-                                <span class="ml-3"><i class="far fa-comment mr-2"></i>123</span>
+                                <span class="ml-3"><i class="far fa-comment mr-2"></i>{{ count($comments) }}</span>
                             </div>
                         </div>
                     </div>
                     <!-- News Detail End -->
 
-                    <!-- Comment List Start -->
-                    <div class="mb-3">
-                        <div class="section-title mb-0">
-                            <h4 class="m-0 text-uppercase font-weight-bold">3 Comments</h4>
-                        </div>
-                        <div class="bg-white border border-top-0 p-4">
-                            <div class="media mt-2 mb-2">
-                                <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
-                                <div class="media-body">
-                                    <h6><a class="text-secondary font-weight-bold" href="">John Doe</a> <small><i>01 Jan
-                                                2045</i></small></h6>
-                                    <p>Diam amet duo labore stet elitr invidunt ea clita ipsum voluptua, tempor labore
-                                        accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod
-                                        ipsum.</p>
-                                    <button class="btn btn-sm btn-outline-secondary">Reply</button>
-                                </div>
+                    @if(count($comments) > 0)
+                        <!-- Comment List Start -->
+                        <div class="mb-3">
+                            <div class="section-title mb-0">
+                                <h4 class="m-0 text-uppercase font-weight-bold">Комментарии</h4>
                             </div>
-                            <div class="media mt-2 mb-2">
-                                <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
-                                <div class="media-body">
-                                    <h6><a class="text-secondary font-weight-bold" href="">John Doe</a> <small><i>01 Jan
-                                                2045</i></small></h6>
-                                    <p>Diam amet duo labore stet elitr invidunt ea clita ipsum voluptua, tempor labore
-                                        accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod
-                                        ipsum.</p>
-                                    <button class="btn btn-sm btn-outline-secondary">Reply</button>
-                                </div>
+                            <div class="bg-white border border-top-0 p-4">
+
+                                @foreach($comments as $comment)
+                                    <div class="media mb-4">
+                                        <img src="{{ $comment->author->getImage() }}" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                                        <div class="media-body">
+                                            <h6><a class="text-secondary font-weight-bold">
+                                                    {{ $comment->author->name }}</a>
+                                                <small>
+                                                    <i>{{ \Carbon\Carbon::parse($comment->created_at)->locale('ru')->isoFormat('DD MMMM YYYY') }}</i>
+                                                </small>
+                                            </h6>
+                                            <p>{{ $comment->comment }}</p>
+                                            <button class="btn btn-sm btn-outline-secondary">Ответить</button>
+                                            @if($comment->author == auth()->user() || auth()->user()->staff > 0)
+                                                <form class="d-inline" action="{{ route('comment.destroy', ['id' => $comment->id, 'slug' => $post->slug]) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-sm btn-outline-secondary">Удалить</button>
+                                                </form>
+                                            @endif
+                                        </div>
+                                    </div>
+                                @endforeach
+
                             </div>
                         </div>
-                    </div>
-                    <!-- Comment List End -->
+                        <!-- Comment List End -->
+                    @endif
+
 
                     <!-- Comment Form Start -->
                     <div class="mb-3">
@@ -126,10 +131,11 @@
                             <h4 class="m-0 text-uppercase font-weight-bold">Добавить комментарий</h4>
                         </div>
                         <div class="bg-white border border-top-0 p-4">
-                            <form>
+                            <form method="POST" action="{{ route('comment.store', ['slug' => $post->slug]) }}">
+                                @csrf
                                 <div class="form-group">
                                     <label for="message">Комментарий</label>
-                                    <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
+                                    <textarea id="comment" name="comment" cols="30" rows="5" class="form-control"></textarea>
                                 </div>
                                 <div class="form-group mb-0">
                                     <input type="submit" value="Отправить"

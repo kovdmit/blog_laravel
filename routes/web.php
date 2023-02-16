@@ -39,6 +39,9 @@ Route::group(['namespace' => 'App\Http\Controllers', 'middleware' => 'auth'], fu
     Route::put('profile', 'UserController@update')->name('user.update');
     Route::get('logout', 'UserController@logout')->name('user.logout');
     Route::delete('users/{id}/avatar', 'UserController@deleteAvatar')->name('user-avatar-del');
+    Route::post('post/{slug}/comment', 'CommentController@store')->name('comment.store');
+    Route::put('post/{slug}/comment/{id}', 'CommentController@update')->name('comment.update');
+    Route::delete('post/{slug}/comment/{id}', 'CommentController@destroy')->name('comment.destroy');
 });
 
 Route::group(['namespace' => 'App\Http\Controllers'], function ()

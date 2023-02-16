@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Lightning;
 use App\Models\Post;
 use Illuminate\Contracts\Foundation\Application;
@@ -65,8 +66,6 @@ class HomeController extends Controller
             ) <= 4
             ORDER BY c.id, p.created_at DESC
         ');
-
-
         return view('categories', compact('posts'));
     }
 
@@ -104,9 +103,14 @@ class HomeController extends Controller
             ->with('category', 'tags')
             ->where('slug', '=', $slug)
             ->first();
+        $comments = Comment::query()
+            ->with('author')
+            ->where('post_id', '=', $post->id)
+            ->orderBy('created_at', 'ASC')
+            ->get();
         $post->views++;
         $post->save();
-        return view('single', compact('lightnings', 'post'));
+        return view('single', compact('lightnings', 'post', 'comments'));
     }
 
     /**
