@@ -4,8 +4,11 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -21,6 +24,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'avatar',
     ];
 
     /**
@@ -42,8 +46,30 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+
+    public static function uploadImage(Request $request, $user_id, $image = null)
+    {
+        if ($request->hasFile('avatar')) {
+            if ($image) {
+                Storage::delete($image);
+            }
+            return $request->file('avatar')->store("avatars/$user_id");
+        }
+    }
+
+    /**
+     * @return string
+     */
+    public function getImage(): string
+    {
+        if (!$this->avatar) {
+            return asset('/assets/front/img/user.png');
+        }
+        return asset("/uploads/$this->avatar");
     }
 }

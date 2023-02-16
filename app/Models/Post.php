@@ -61,7 +61,10 @@ class Post extends Model
         }
     }
 
-    public function getImage()
+    /**
+     * @return string
+     */
+    public function getImage(): string
     {
         if (!$this->thumbnail) {
             return asset('assets/admin/img/no-image.png');
@@ -69,6 +72,10 @@ class Post extends Model
         return asset("/uploads/$this->thumbnail");
     }
 
+    /**
+     * @param $value
+     * @return void
+     */
     public function setTitleAttribute($value)
     {
         $this->attributes['title'] = Str::title($value);

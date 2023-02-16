@@ -27,6 +27,10 @@
                                 <a class="nav-link text-body small" href="{{ route('admin.index') }}">Панель
                                     администратора</a>
                             </li>
+                        @elseif(auth()->user()->staff === 0)
+                            <li class="nav-item border-right border-secondary">
+                                <a class="nav-link text-body small" href="{{ route('user.index') }}">Личный кабинет</a>
+                            </li>
                         @endif
 
                         <li class="nav-item border-right border-secondary">

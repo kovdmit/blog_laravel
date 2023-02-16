@@ -34,6 +34,8 @@ Route::group(['namespace' => 'App\Http\Controllers', 'middleware' => 'guest'], f
 
 Route::group(['namespace' => 'App\Http\Controllers', 'middleware' => 'auth'], function ()
 {
+    Route::get('profile', 'UserController@index')->name('user.index');
+    Route::put('profile', 'UserController@update')->name('user.update');
     Route::get('logout', 'UserController@logout')->name('user.logout');
 });
 

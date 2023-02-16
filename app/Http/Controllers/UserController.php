@@ -6,9 +6,41 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
+    public function index()
+    {
+        $user = Auth::user();
+        return view('user.index', compact('user'));
+    }
+
+
+    public function update(Request $request)
+    {
+        $user = Auth::user();
+        if($user->email === $request->email) {
+            $data = $request->validate([
+                'name' => 'required',
+                'avatar' => 'nullable|image'
+            ]);
+        } else {
+            $data = $request->validate([
+                'name' => 'required',
+                'avatar' => 'nullable|image',
+                'email' => 'required|email|unique:users'
+            ]);
+        }
+
+        if ($request->avatar) {
+            $data['avatar'] = User::uploadImage($request, $user->id, $user->avatar);
+        }
+        $user->update($data);
+        return back()->with(['success' => 'Профиль успешно изменён.', 'user' => $user]);
+    }
+
+
     public function regCreate()
     {
         return view('user.register');
