@@ -17,7 +17,7 @@ class HomeController extends Controller
     public function index()
     {
         $last_posts = Post::query()
-            ->with('category')
+            ->with('category', 'author')
             ->orderBy('created_at', 'desc')
             ->limit(13)->get();
         $posts1_4 = $last_posts->slice(0, 4);
@@ -44,7 +44,6 @@ class HomeController extends Controller
 
         $pop_news = Post::query()->with('category')->orderBy('views', 'desc')->limit(8)->get();
         $lightnings = Lightning::query()->orderBy('created_at', 'desc')->limit(10)->get();
-
         return view('index', compact( 'posts1_4', 'posts5_8', 'post9', 'posts10_13', 'main', 'carusel', 'lightnings', 'pop_news'));
     }
 
@@ -84,6 +83,7 @@ class HomeController extends Controller
             ->where('slug', '=', $slug)
             ->first();
         $posts = Post::query()
+            ->with('category', 'author')
             ->where('category_id', '=', $category->id)
             ->orderBy('created_at', 'desc')
             ->paginate(10);
@@ -117,7 +117,9 @@ class HomeController extends Controller
      */
     public function tagShow(string $slug)
     {
-        $posts = Post::query()->with('category')->whereHas('tags', function ($query) use ($slug) {
+        $posts = Post::query()
+            ->with('category', 'author')
+            ->whereHas('tags', function ($query) use ($slug) {
             $query->where('slug', '=', $slug);
         })->get();
         return view('tag', compact('posts', 'slug'));
@@ -139,8 +141,12 @@ class HomeController extends Controller
                 'categories.id as category_id',
                 'categories.slug as category_slug',
                 'categories.title as category_title',
+                'users.id as author_id',
+                'users.name as author_name',
+                'users.avatar as author_avatar',
                 'posts.*')
             ->join('categories', 'posts.category_id', '=', 'categories.id')
+            ->join('users', 'posts.author_id', '=', 'users.id')
             ->where('posts.title', 'like', "%{$query['s']}%")
             ->orWhere('posts.content', 'like', "%{$query['s']}%")
             ->orderBy('posts.created_at', 'desc')

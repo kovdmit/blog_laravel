@@ -26,7 +26,6 @@
                 <div class="col-lg-8">
                     <div class="row">
 
-
                         <div class="col-12">
                             <div class="section-title">
                                 <h4 class="m-0 text-uppercase font-weight-bold">Все категории</h4>

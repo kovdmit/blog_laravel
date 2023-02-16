@@ -61,9 +61,15 @@
                                     </div>
                                     <div class="d-flex justify-content-between bg-white border border-top-0 p-4">
                                         <div class="d-flex align-items-center">
-                                            <img class="rounded-circle mr-2" src="{{ auth()->user()->getImage() }}" width="25" height="25"
+                                            <img class="rounded-circle mr-2" src="
+                                            @if($post->author_avatar)
+                                                /uploads/{{ $post->author_avatar }}
+                                            @else
+                                                /assets/front/img/user.png
+                                            @endif
+                                            " width="25" height="25"
                                                  alt="">
-                                            <small>{{ auth()->user()->name }}</small>
+                                            <small>{{ $post->author_name }}</small>
                                         </div>
                                         <div class="d-flex align-items-center">
                                             <small class="ml-3"><i class="far fa-eye mr-2"></i>{{ $post->views }}

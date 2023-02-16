@@ -168,7 +168,7 @@
                          alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">{{ auth()->user()->name }}</a>
+                    <a href="{{ route('user.index') }}" class="d-block">{{ auth()->user()->name }}</a>
                 </div>
             </div>
 
@@ -200,104 +200,115 @@
                         </a>
                     </li>
 
-{{--                    Lightning--}}
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fa-solid fa-cloud-bolt"></i>
-                            <p>
-                                Молния
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{ route('lightning.index') }}" class="nav-link">
-                                    <i class="fa-solid fa-bolt nav-icon"></i>
-                                    <p>Список молний</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('lightning.create') }}" class="nav-link">
-                                    <i class="far fa-solid fa-plus nav-icon"></i>
-                                    <p>Новая молния</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                    @if(auth()->user()->staff > 0)
+                        {{--                    Lightning--}}
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa-solid fa-cloud-bolt"></i>
+                                <p>
+                                    Молния
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('lightning.index') }}" class="nav-link">
+                                        <i class="fa-solid fa-bolt nav-icon"></i>
+                                        <p>Список молний</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('lightning.create') }}" class="nav-link">
+                                        <i class="far fa-solid fa-plus nav-icon"></i>
+                                        <p>Новая молния</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
-{{--                    Category--}}
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-solid fa-list"></i>
-                            <p>
-                                Категории
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{ route('categories.index') }}" class="nav-link">
-                                    <i class="far fa-solid fa-list-ol nav-icon"></i>
-                                    <p>Список категорий</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('categories.create') }}" class="nav-link">
-                                    <i class="far fa-solid fa-plus nav-icon"></i>
-                                    <p>Новая категория</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                        {{--                    Category--}}
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-solid fa-list"></i>
+                                <p>
+                                    Категории
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('categories.index') }}" class="nav-link">
+                                        <i class="far fa-solid fa-list-ol nav-icon"></i>
+                                        <p>Список категорий</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('categories.create') }}" class="nav-link">
+                                        <i class="far fa-solid fa-plus nav-icon"></i>
+                                        <p>Новая категория</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
-{{--                    Post--}}
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-solid fa-ticket"></i>
-                            <p>
-                                Публикации
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{ route('posts.index') }}" class="nav-link">
-                                    <i class="far fa-regular fa-clipboard nav-icon"></i>
-                                    <p>Список публикаций</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('posts.create') }}" class="nav-link">
-                                    <i class="far fa-solid fa-plus nav-icon"></i>
-                                    <p>Новая публикация</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                        {{--                    Post--}}
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-solid fa-ticket"></i>
+                                <p>
+                                    Публикации
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('posts.index') }}" class="nav-link">
+                                        <i class="far fa-regular fa-clipboard nav-icon"></i>
+                                        <p>Список публикаций</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('posts.create') }}" class="nav-link">
+                                        <i class="far fa-solid fa-plus nav-icon"></i>
+                                        <p>Новая публикация</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
-{{--                    Tag--}}
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-solid fa-tags"></i>
+                        {{--                    Tag--}}
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-solid fa-tags"></i>
+                                <p>
+                                    Теги
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('tags.index') }}" class="nav-link">
+                                        <i class="far fa-solid fa-tag nav-icon"></i>
+                                        <p>Список тегов</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('tags.create') }}" class="nav-link">
+                                        <i class="far fa-solid fa-plus nav-icon"></i>
+                                        <p>Новый тег</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endif
+
+                    <li class="nav-item">
+                        <a href="{{ route('user.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-user"></i>
                             <p>
-                                Теги
-                                <i class="right fas fa-angle-left"></i>
+                                Настройки профиля
                             </p>
                         </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{ route('tags.index') }}" class="nav-link">
-                                    <i class="far fa-solid fa-tag nav-icon"></i>
-                                    <p>Список тегов</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('tags.create') }}" class="nav-link">
-                                    <i class="far fa-solid fa-plus nav-icon"></i>
-                                    <p>Новый тег</p>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
                 </ul>
             </nav>
