@@ -43,6 +43,8 @@ class UserController extends Controller
         if($request->avatar) {
             $data['avatar'] = User::uploadImage($request, $user->id, $user->avatar);
         }
+        $user->staff = $data['staff'];
+        $user->active = $data['active'];
         $user->update($data);
         return redirect()->route('users.index')->with('success', "Редактирование пользователя $user->name завершено успешно.");
     }

@@ -46,6 +46,8 @@
                     <tr>
                         <th style="width: 10px">id</th>
                         <th>Имя</th>
+                        <th>Активность</th>
+                        <th>Статус персонала</th>
                         <th>Аватар</th>
                         <th>Email</th>
                         <th style="width: 40px">Действия</th>
@@ -56,6 +58,8 @@
                         <tr>
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
+                            <td>{{ $user->active }}</td>
+                            <td>{{ $user->staff }}</td>
                             <td class="text-center"><img style="max-width: 110px;" src="{{ $user->getImage() }}" alt="avatar"></td>
                             <td>{{ $user->email }}</td>
                             <td>
