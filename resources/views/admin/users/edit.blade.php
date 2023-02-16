@@ -58,7 +58,7 @@
                                     <div class="miniature">
                                         <img src="{{ $user->getImage() }}" alt="img">
                                         @if($user->avatar)
-                                            <a onclick="deleteAvatar()">
+                                            <a data-toggle="modal" data-target="#deleteAvater">
                                                 <i class="fa-solid fa-trash-can fa-lg ico-shadow-del"></i>
                                             </a>
                                         @endif
@@ -88,7 +88,34 @@
 
     </section>
     <!-- /.content -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="deleteAvater" tabindex="-1" role="dialog" aria-labelledby="deleteAvaterLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteAvaterLabel">Удалить аватар пользователя?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img style="max-width: 450px;" src="{{ $user->getImage() }}" alt="img">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Нет</button>
+                    <form action="{{ route('user-avatar-del', ['id' => $user->id]) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-primary">Да</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('scripts')
+
 @endsection

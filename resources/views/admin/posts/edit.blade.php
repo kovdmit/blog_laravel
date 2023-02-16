@@ -63,7 +63,7 @@
                                     <div class="miniature">
                                         <img src="{{ $post->getImage() }}" alt="img {{ $post->getImage() }}">
                                         @if($post->thumbnail)
-                                            <a href="{{ route('img-post-del', ['slug' => $post->slug]) }}">
+                                            <a data-toggle="modal" data-target="#deleteImage">
                                                 <i class="fa-solid fa-trash-can fa-lg ico-shadow-del"></i>
                                             </a>
                                         @endif
@@ -116,6 +116,32 @@
 
     </section>
     <!-- /.content -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="deleteImage" tabindex="-1" role="dialog" aria-labelledby="deleteImageLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteImageLabel">Удалить изображение новости?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img style="max-width: 450px;" src="{{ $post->getImage() }}" alt="img">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Нет</button>
+                    <form action="{{ route('post-img-del', ['slug' => $post->slug]) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-primary">Да</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('scripts')

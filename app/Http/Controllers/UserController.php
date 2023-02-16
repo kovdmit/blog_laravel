@@ -42,11 +42,14 @@ class UserController extends Controller
 
     public function deleteAvatar($id)
     {
+        if(Auth::user()->staff < 3 && Auth::user()->id != $id) {
+            return redirect()->route('user.index')->with('error', 'Нельзя удалить чужой аватар!');
+        }
         $user = User::query()->find($id);
         Storage::delete($user->avatar);
         $user->avatar = '';
         $user->save();
-        return back()->with('success', 'Удаление пользователя успешно завершено.');
+        return back()->with('success', 'Удаление аватара пользователя успешно завершено.');
     }
 
 
