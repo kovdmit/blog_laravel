@@ -144,7 +144,10 @@ class PostController extends Controller
     public function delImg($slug)
     {
         $post = Post::query()->get()->where('slug', '=', $slug)->first();
-        Storage::delete($post->thumbnail);
+        if($post->thumbnail) {
+            Storage::delete($post->thumbnail);
+        }
+        $post->thumbnail = '';
         $post->save();
         return back()->with('success', 'Удаление изображения успешно завершено.');
     }

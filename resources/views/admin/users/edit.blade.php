@@ -31,11 +31,23 @@
                         <div class="card-header">
                             <h3 class="card-title">Настройки профиля</h3>
                         </div>
-                        <form action="{{ route('user.update', ['id' => auth()->user()->id]) }}" method="POST"
+                        <form action="{{ route('users.update', ['user' => $user->id]) }}" method="POST"
                               enctype="multipart/form-data">
                             @method('PUT')
                             @csrf
                             <div class="card-body">
+                                <div class="form-group">
+                                    <label for="active">Активность (меньше нуля - бан)</label>
+                                    <input type="number" class="form-control @error('active') is-invalid @enderror"
+                                           name="active" id="active" placeholder="Активность"
+                                           value="{{ $user->active }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="staff">Статус персонала (3 - администратор, 0 - пользователь)</label>
+                                    <input type="number" class="form-control @error('staff') is-invalid @enderror"
+                                           name="staff" id="staff" placeholder="Статус персонала"
+                                           value="{{ $user->staff }}">
+                                </div>
                                 <div class="form-group">
                                     <label for="name">Имя</label>
                                     <input type="text" class="form-control @error('name') is-invalid @enderror"
@@ -67,6 +79,7 @@
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-primary">Сохранить</button>
                                 </div>
+                            </div>
                         </form>
                     </div>
                 </div>

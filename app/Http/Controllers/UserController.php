@@ -40,6 +40,15 @@ class UserController extends Controller
         return back()->with(['success' => 'Профиль успешно изменён.', 'user' => $user]);
     }
 
+    public function deleteAvatar($id)
+    {
+        $user = User::query()->find($id);
+        Storage::delete($user->avatar);
+        $user->avatar = '';
+        $user->save();
+        return back()->with('success', 'Удаление пользователя успешно завершено.');
+    }
+
 
     public function regCreate()
     {

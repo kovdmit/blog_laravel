@@ -21,7 +21,8 @@ Route::group(['prefix' => 'admin', 'namespace' => '\App\Http\Controllers\Admin',
     Route::resource('tags', 'TagController');
     Route::resource('posts', 'PostController');
     Route::resource('lightning', 'LightningController');
-    Route::get('posts/{slug}/del-img', 'PostController@delImg')->name('img-post-del');
+    Route::resource('users', 'UserController');
+    Route::delete('posts/{slug}/img', 'PostController@delImg')->name('post-img-del');
 });
 
 Route::group(['namespace' => 'App\Http\Controllers', 'middleware' => 'guest'], function ()
@@ -37,6 +38,7 @@ Route::group(['namespace' => 'App\Http\Controllers', 'middleware' => 'auth'], fu
     Route::get('profile', 'UserController@index')->name('user.index');
     Route::put('profile', 'UserController@update')->name('user.update');
     Route::get('logout', 'UserController@logout')->name('user.logout');
+    Route::delete('users/{id}/avatar', 'UserController@deleteAvatar')->name('user-avatar-del');
 });
 
 Route::group(['namespace' => 'App\Http\Controllers'], function ()
