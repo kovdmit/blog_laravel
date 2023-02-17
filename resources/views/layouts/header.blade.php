@@ -120,16 +120,16 @@
             <div class="navbar-nav mr-auto py-0">
                 <a href="{{ route('home') }}" class="nav-item nav-link active">Главная</a>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Категории</a>
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown">Категории</a>
                     <div class="dropdown-menu rounded-0 m-0">
                         <a href="{{ route('category.index') }}" class="dropdown-item"><strong>Все категории</strong></a>
                         @foreach($categories as $slug => $category)
                             <a href="{{ route('category.show', ['slug' => $slug]) }}"
                                class="dropdown-item">{{ $category }}</a>
                         @endforeach
-
                     </div>
                 </div>
+                <a href="{{ route('static.contact') }}" class="nav-item nav-link">Обратная связь</a>
             </div>
             <form action="{{ route('post.search') }}">
                 <div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">

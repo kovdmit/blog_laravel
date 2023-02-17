@@ -53,6 +53,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function ()
     Route::get('post/{slug}', 'HomeController@postShow')->name('post.show');
     Route::get('tag/{slug}', 'HomeController@tagShow')->name('tag.show');
     Route::get('search', 'HomeController@search')->name('post.search');
+    Route::get('contact', 'StaticPageController@contact')->name('static.contact');
+    Route::match(['get', 'post'], 'sendmail', 'StaticPageController@sendmail')->name('sendmail');
 });
 
 

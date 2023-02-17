@@ -90,7 +90,7 @@ class UserController extends Controller
             'password' => $request->password,
         ])) {
             if (Auth::user()->active<0) {
-                session()->flash('error', 'Ваша учетная запись заблокирована. Если вы считаете, что произошла ошибка, напишите администратору: example@email.com');
+                session()->flash('error', 'Ваша учетная запись заблокирована. Если вы считаете, что произошла ошибка, напишите администратору: pzhabbiu@gmail.com');
                 Auth::logout();
                 return redirect()->route('home');
             }
