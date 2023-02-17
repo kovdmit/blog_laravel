@@ -38,7 +38,7 @@
                                 <div class="position-relative mb-3 border">
                                     <a href="{{ route('post.show', ['slug' => $post->slug]) }}">
                                         <img class="img-fluid w-100" src="{{ $post->getImage() }}"
-                                             style="object-fit: cover;">
+                                             style="object-fit: cover;" alt="img">
                                     </a>
                                     <div class="bg-white  p-4">
                                         <div class="mb-2">
