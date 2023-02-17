@@ -57,7 +57,8 @@
                                     </div>
                                     <div class="d-flex justify-content-between bg-white border border-top-0 p-4">
                                         <div class="d-flex align-items-center">
-                                            <img class="rounded-circle mr-2" src="{{ $post->author->getImage() }}" width="25" height="25"
+                                            <img class="rounded-circle mr-2" src="{{ $post->author->getImage() }}"
+                                                 width="25" height="25"
                                                  alt="">
                                             <small>{{ $post->author->name }}</small>
                                         </div>
@@ -75,33 +76,31 @@
                                 </div>
                             @endif
                         @endforeach
-
-                        @if($posts->hasPages())
-                            <div class="col">
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination justify-content-end">
-                                        <li class="page-item @if($posts->onFirstPage()) disabled @endif">
-                                            <a class="page-link" href="{{ $posts->previousPageUrl() }}">Назад</a>
-                                        </li>
-                                        @for($i = 1; $i <= $posts->lastPage(); $i++)
-                                            @if($i === 1 || abs($i - $posts->currentPage()) < 3 || $i === $posts->lastPage())
-                                                <li class="page-item {{ ($posts->currentPage() == $i) ? ' active' : '' }}">
-                                                    <a class="page-link" href="{{ $posts->url($i)}} ">
-                                                        {{ $i }}
-                                                    </a>
-                                                </li>
-                                            @endif
-
-                                        @endfor
-                                        <li class="page-item @if(!$posts->hasMorePages()) disabled @endif">
-                                            <a class="page-link" href="{{ $posts->nextPageUrl() }}">Вперед</a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        @endif
-
                     </div>
+                    @if($posts->hasPages())
+                        <div class="col">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-end">
+                                    <li class="page-item @if($posts->onFirstPage()) disabled @endif">
+                                        <a class="page-link" href="{{ $posts->previousPageUrl() }}">Назад</a>
+                                    </li>
+                                    @for($i = 1; $i <= $posts->lastPage(); $i++)
+                                        @if($i === 1 || abs($i - $posts->currentPage()) < 3 || $i === $posts->lastPage())
+                                            <li class="page-item {{ ($posts->currentPage() == $i) ? ' active' : '' }}">
+                                                <a class="page-link" href="{{ $posts->url($i)}} ">
+                                                    {{ $i }}
+                                                </a>
+                                            </li>
+                                        @endif
+
+                                    @endfor
+                                    <li class="page-item @if(!$posts->hasMorePages()) disabled @endif">
+                                        <a class="page-link" href="{{ $posts->nextPageUrl() }}">Вперед</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    @endif
                 </div>
 
                 @include('layouts.sidebar')
