@@ -1,7 +1,7 @@
 @extends('user.loyout-auth')
 
 @section('title')
-    Авторизация
+    <title>Авторизация</title>
 @endsection
 
 @section('content')

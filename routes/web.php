@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,8 @@ Route::group(['namespace' => 'App\Http\Controllers', 'middleware' => 'guest'], f
     Route::post('register', 'UserController@regStore')->name('user.registration.store');
     Route::get('login', 'UserController@authCreate')->name('user.login.create');
     Route::post('login', 'UserController@authStore')->name('user.login.store');
+
+    Route::post('ajax/check-email', [UserController::class, 'checkEmail']);
 });
 
 Route::group(['namespace' => 'App\Http\Controllers', 'middleware' => 'auth'], function ()
